@@ -100,10 +100,10 @@ int main()
 	switch (pole[current_figure_x][current_figure_y]) {
 	case 01: {
 		/*
-		черная пешка 
+		черная пешка
 		ходит вверх по доске, потому что доска повёрнута со стороны чёрных ==>
 		==> координаты y уменьшаются
-		если белая пешка сделала ход на 2 клетки вперёд, 
+		если белая пешка сделала ход на 2 клетки вперёд,
 		то можно срубить подиагонали на
 		линию y сходившей пешки
 		если пешка находится на линнии игриков
@@ -124,15 +124,19 @@ int main()
 		*/
 		// может ли конь сделать такой ход
 		int res_1, res_2;
+		while (true) {
 		res_1 = abs(current_figure_x - target_x);
 		res_2 = abs(current_figure_y - target_y);
-		if (((res_1 == 2) and (res_2 == 1)) or ((res_1 == 1) and (res_2 == 2))) {
-			pole[target_x][target_y] = ocurrent_figure;
-			pole[current_figure_x][current_figure_y] = 0;
-			printf("%c ходит на клетку %d %d\n", translate[ocurrent_figure], target_x, target_y);
-		}
-		else {
-			printf("%c не может сходить на клетку %d %d\n", translate[ocurrent_figure], target_x, target_y);
+			if (((res_1 == 2) and (res_2 == 1)) or ((res_1 == 1) and (res_2 == 2))) {
+				pole[target_x][target_y] = ocurrent_figure;
+				pole[current_figure_x][current_figure_y] = 0;
+				printf("%c ходит на клетку %d %d\n", translate[ocurrent_figure], target_x, target_y);
+				break;
+			}
+			else {
+				printf("%c не может сходить на клетку %d %d\n", translate[ocurrent_figure], target_x, target_y);
+				scanf_s("%d %d", &target_x, &target_y);
+			}
 		}
 		break;
 	}
@@ -143,7 +147,72 @@ int main()
 	}
 	case 04: {
 		//чёрная ладья
+		  // Проверяем все возможные ходы по вертикали (вверх и вниз)
+		while (true) {
+			if (((target_x != current_figure_x) or (target_y != current_figure_y)) and ((target_x != current_figure_x) and (target_y != current_figure_y))) {
+				printf("Введена некорректная координата\nВведите новую координату\n");
+				scanf_s("%d%d", &target_x, &target_y);
+			}
+			else{
+				for (int i = current_figure_x + 1; i <= 7; ++i) {
+					if (pole[i][current_figure_y] != 0) {
+						if (pole[i][current_figure_y] / 10 == 0) { // своя фигура
+							break; // можем остановиться, дальше не идём
+						}
+						else {
+							printf("Ладья может забрать фигуру на (%d, %d)\n", i, current_figure_y);
+							break; // можно выходить из цикла, встречена фигура
+						}
+					}
+					printf("Ладья может сходить на (%d, %d)\n", i, current_figure_y);
+				}
 
+				for (int i = current_figure_x - 1; i >= 0; --i) {
+					if (pole[i][current_figure_y] != 0) {
+						if (pole[i][current_figure_y] / 10 == 0) {
+							break; // своя фигура
+						}
+						else {
+							printf("Ладья может забрать фигуру на (%d, %d)\n", i, current_figure_y);
+							break;
+						}
+					}
+					printf("Ладья может сходить на (%d, %d)\n", i, current_figure_y);
+				}
+
+				// Проверяем все возможные ходы по горизонтали (вправо и влево)
+				for (int j = current_figure_y + 1; j <= 7; ++j) {
+					if (pole[current_figure_x][j] != 0) {
+						if (pole[current_figure_x][j] / 10 == 0) {
+							break;
+						}
+						else {
+							printf("Ладья может забрать фигуру на (%d, %d)\n", current_figure_x, j);
+							break;
+						}
+					}
+					printf("Ладья может сходить на (%d, %d)\n", current_figure_x, j);
+				}
+
+				for (int j = current_figure_y - 1; j >= 0; --j) {
+					if (pole[current_figure_x][j] != 0) {
+						if (pole[current_figure_x][j] / 10 == 0) {
+							break;
+						}
+						else {
+							printf("Ладья может забрать фигуру на (%d, %d)\n", current_figure_x, j);
+							break;
+						}
+					}
+					printf("Ладья может сходить на (%d, %d)\n", current_figure_x, j);
+				}
+
+				// Обновляем состояние доски: перемещаем ладьи
+				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
+				pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+				break;
+			}
+		}
 		break;
 	}
 	case 05: {
@@ -163,7 +232,21 @@ int main()
 	}
 	case 12: {
 		// белый конь
-
+		int res_1, res_2;
+		while (true) {
+			res_1 = abs(current_figure_x - target_x);
+			res_2 = abs(current_figure_y - target_y);
+			if (((res_1 == 2) and (res_2 == 1)) or ((res_1 == 1) and (res_2 == 2))) {
+				pole[target_x][target_y] = ocurrent_figure;
+				pole[current_figure_x][current_figure_y] = 0;
+				printf("%c ходит на клетку %d %d\n", translate[ocurrent_figure], target_x, target_y);
+				break;
+			}
+			else {
+				printf("%c не может сходить на клетку %d %d\n", translate[ocurrent_figure], target_x, target_y);
+				scanf_s("%d %d", &target_x, &target_y);
+			}
+		}
 		break;
 	}
 	case 13: {
