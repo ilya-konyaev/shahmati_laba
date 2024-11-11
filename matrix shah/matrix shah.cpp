@@ -253,7 +253,7 @@ int main()
 			}
 		}
 		pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
-		pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+		pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию  */
 		break;
 	}
 	case 04: {
