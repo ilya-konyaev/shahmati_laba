@@ -125,8 +125,8 @@ int main()
 		// может ли конь сделать такой ход
 		int res_1, res_2;
 		while (true) {
-		res_1 = abs(current_figure_x - target_x);
-		res_2 = abs(current_figure_y - target_y);
+			res_1 = abs(current_figure_x - target_x);
+			res_2 = abs(current_figure_y - target_y);
 			if (((res_1 == 2) and (res_2 == 1)) or ((res_1 == 1) and (res_2 == 2))) {
 				pole[target_x][target_y] = ocurrent_figure;
 				pole[current_figure_x][current_figure_y] = 0;
@@ -146,71 +146,107 @@ int main()
 		break;
 	}
 	case 04: {
-		//чёрная ладья
-		  // Проверяем все возможные ходы по вертикали (вверх и вниз)
-		while (true) {
-			if (((target_x != current_figure_x) or (target_y != current_figure_y)) and ((target_x != current_figure_x) and (target_y != current_figure_y))) {
-				printf("Введена некорректная координата\nВведите новую координату\n");
-				scanf_s("%d%d", &target_x, &target_y);
+		// Чёрная ладья
+		int valid_move = 0; // Флаг для проверки корректности введенных координат
+
+		while (!valid_move) {
+			if (target_x == current_figure_x) { // Движение по вертикали
+				// Проверяем все ходы вверх
+				for (int i = current_figure_y + 1; i <= 7; ++i) {
+					if (pole[current_figure_x][i] != 0) {
+						if (pole[current_figure_x][i] / 10 == 0) { // Своя фигура
+							break; // Остановка перед своей фигурой
+						}
+						else {
+							// Съедание вражеской фигуры
+							if (i == target_y) {
+								valid_move = 1;
+								printf("Ладья может забрать фигуру на (%d, %d)\n", current_figure_x, i);
+							}
+							break; // Остановка перед фигурой противника
+						}
+					}
+					if (i == target_y) { // Если мы дошли до нужной цели
+						valid_move = 1;
+						break;
+					}
+				}
+				// Проверяем все ходы вниз
+				for (int i = current_figure_y - 1; i >= 0; --i) {
+					if (pole[current_figure_x][i] != 0) {
+						if (pole[current_figure_x][i] / 10 == 0) { // Своя фигура
+							break; // Остановка перед своей фигурой
+						}
+						else {
+							// Съедание вражеской фигуры
+							if (i == target_y) {
+								valid_move = 1;
+								printf("Ладья может забрать фигуру на (%d, %d)\n", current_figure_x, i);
+							}
+							break; // Остановка перед фигурой противника
+						}
+					}
+					if (i == target_y) { // Если мы дошли до нужной цели
+						valid_move = 1;
+						break;
+					}
+				}
 			}
-			else{
-				for (int i = current_figure_x + 1; i <= 7; ++i) {
-					if (pole[i][current_figure_y] != 0) {
-						if (pole[i][current_figure_y] / 10 == 0) { // своя фигура
-							break; // можем остановиться, дальше не идём
+			else if (target_y == current_figure_y) { // Движение по горизонтали
+				// Проверяем все ходы вправо
+				for (int j = current_figure_x + 1; j <= 7; ++j) {
+					if (pole[j][current_figure_y] != 0) {
+						if (pole[j][current_figure_y] / 10 == 0) { // Своя фигура
+							break; // Остановка перед своей фигурой
 						}
 						else {
-							printf("Ладья может забрать фигуру на (%d, %d)\n", i, current_figure_y);
-							break; // можно выходить из цикла, встречена фигура
+							// Съедание вражеской фигуры
+							if (j == target_x) {
+								valid_move = 1;
+								printf("Ладья может забрать фигуру на (%d, %d)\n", j, current_figure_y);
+							}
+							break; // Остановка перед фигурой противника
 						}
 					}
-					printf("Ладья может сходить на (%d, %d)\n", i, current_figure_y);
+					if (j == target_x) { // Если мы дошли до нужной цели
+						valid_move = 1;
+						break;
+					}
 				}
 
-				for (int i = current_figure_x - 1; i >= 0; --i) {
-					if (pole[i][current_figure_y] != 0) {
-						if (pole[i][current_figure_y] / 10 == 0) {
-							break; // своя фигура
+				// Проверяем все ходы влево
+				for (int j = current_figure_x - 1; j >= 0; --j) {
+					if (pole[j][current_figure_y] != 0) {
+						if (pole[j][current_figure_y] / 10 == 0) { // Своя фигура
+							break; // Остановка перед своей фигурой
 						}
 						else {
-							printf("Ладья может забрать фигуру на (%d, %d)\n", i, current_figure_y);
-							break;
+							// Съедание вражеской фигуры
+							if (j == target_x) {
+								valid_move = 1;
+								printf("Ладья может забрать фигуру на (%d, %d)\n", j, current_figure_y);
+							}
+							break; // Остановка перед фигурой противника
 						}
 					}
-					printf("Ладья может сходить на (%d, %d)\n", i, current_figure_y);
-				}
-
-				// Проверяем все возможные ходы по горизонтали (вправо и влево)
-				for (int j = current_figure_y + 1; j <= 7; ++j) {
-					if (pole[current_figure_x][j] != 0) {
-						if (pole[current_figure_x][j] / 10 == 0) {
-							break;
-						}
-						else {
-							printf("Ладья может забрать фигуру на (%d, %d)\n", current_figure_x, j);
-							break;
-						}
+					if (j == target_x) { // Если мы дошли до нужной цели
+						valid_move = 1;
+						break;
 					}
-					printf("Ладья может сходить на (%d, %d)\n", current_figure_x, j);
 				}
+			}
+			else {
+				printf("Ладья может двигаться только по вертикали или горизонтали.\n");
+			}
 
-				for (int j = current_figure_y - 1; j >= 0; --j) {
-					if (pole[current_figure_x][j] != 0) {
-						if (pole[current_figure_x][j] / 10 == 0) {
-							break;
-						}
-						else {
-							printf("Ладья может забрать фигуру на (%d, %d)\n", current_figure_x, j);
-							break;
-						}
-					}
-					printf("Ладья может сходить на (%d, %d)\n", current_figure_x, j);
-				}
-
-				// Обновляем состояние доски: перемещаем ладьи
+			if (valid_move) {
+				// Обновляем состояние доски: перемещаем ладью
 				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
 				pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
-				break;
+			}
+			else {
+				printf("Несоответствующий ход. Введите новые координаты:\n");
+				scanf_s("%d%d", &target_x, &target_y);
 			}
 		}
 		break;
@@ -256,7 +292,108 @@ int main()
 	}
 	case 14: {
 		// белая ладья
+		int valid_move = 0; // Флаг для проверки корректности введенных координат
 
+		while (!valid_move) {
+			if (target_x == current_figure_x) { // Движение по вертикали
+				// Проверяем все ходы вверх
+				for (int i = current_figure_y + 1; i <= 7; ++i) {
+					if (pole[current_figure_x][i] != 0) {
+						if (pole[current_figure_x][i] / 10 == 1) { // Своя фигура
+							break; // Остановка перед своей фигурой
+						}
+						else {
+							// Съедание вражеской фигуры
+							if (i == target_y) {
+								valid_move = 1;
+								printf("Ладья может забрать фигуру на (%d, %d)\n", current_figure_x, i);
+							}
+							break; // Остановка перед фигурой противника
+						}
+					}
+					if (i == target_y) { // Если мы дошли до нужной цели
+						valid_move = 1;
+						break;
+					}
+				}
+				// Проверяем все ходы вниз
+				for (int i = current_figure_y - 1; i >= 0; --i) {
+					if (pole[current_figure_x][i] != 0) {
+						if (pole[current_figure_x][i] / 10 == 1) { // Своя фигура
+							break; // Остановка перед своей фигурой
+						}
+						else {
+							// Съедание вражеской фигуры
+							if (i == target_y) {
+								valid_move = 1;
+								printf("Ладья может забрать фигуру на (%d, %d)\n", current_figure_x, i);
+							}
+							break; // Остановка перед фигурой противника
+						}
+					}
+					if (i == target_y) { // Если мы дошли до нужной цели
+						valid_move = 1;
+						break;
+					}
+				}
+			}
+			else if (target_y == current_figure_y) { // Движение по горизонтали
+				// Проверяем все ходы вправо
+				for (int j = current_figure_x + 1; j <= 7; ++j) {
+					if (pole[j][current_figure_y] != 0) {
+						if (pole[j][current_figure_y] / 10 == 1) { // Своя фигура
+							break; // Остановка перед своей фигурой
+						}
+						else {
+							// Съедание вражеской фигуры
+							if (j == target_x) {
+								valid_move = 1;
+								printf("Ладья может забрать фигуру на (%d, %d)\n", j, current_figure_y);
+							}
+							break; // Остановка перед фигурой противника
+						}
+					}
+					if (j == target_x) { // Если мы дошли до нужной цели
+						valid_move = 1;
+						break;
+					}
+				}
+
+				// Проверяем все ходы влево
+				for (int j = current_figure_x - 1; j >= 0; --j) {
+					if (pole[j][current_figure_y] != 0) {
+						if (pole[j][current_figure_y] / 10 == 1) { // Своя фигура
+							break; // Остановка перед своей фигурой
+						}
+						else {
+							// Съедание вражеской фигуры
+							if (j == target_x) {
+								valid_move = 1;
+								printf("Ладья может забрать фигуру на (%d, %d)\n", j, current_figure_y);
+							}
+							break; // Остановка перед фигурой противника
+						}
+					}
+					if (j == target_x) { // Если мы дошли до нужной цели
+						valid_move = 1;
+						break;
+					}
+				}
+			}
+			else {
+				printf("Ладья может двигаться только по вертикали или горизонтали.\n");
+			}
+
+			if (valid_move) {
+				// Обновляем состояние доски: перемещаем ладью
+				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
+				pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+			}
+			else {
+				printf("Несоответствующий ход. Введите новые координаты:\n");
+				scanf_s("%d%d", &target_x, &target_y);
+			}
+		}
 		break;
 	}
 	case 15: {
