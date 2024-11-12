@@ -1,5 +1,4 @@
-﻿﻿
-
+﻿
 #include <iostream>
 
 /*
@@ -99,7 +98,7 @@ int main()
 
 	switch (pole[current_figure_x][current_figure_y]) {
 	case 01: {
-		int valid_move = 0
+		int valid_move = 0;
 		/*
 		черная пешка
 		ходит вверх по доске, потому что доска повёрнута со стороны чёрных ==>
@@ -110,8 +109,8 @@ int main()
 		если пешка находится на линнии игриков
 		равной 2, то можно сходить на 2 клетки вперёд
 		*/
-		while(!valid_move)
-		{	
+		while (!valid_move)
+		{
 			if (target_y - current_figure_y == -1)
 			{
 				if (target_x == current_figure_x)
@@ -125,27 +124,27 @@ int main()
 						}
 						else
 						{
-							printf("Низя ходить в занятую клеточку.\n")
+							printf("Низя ходить в занятую клеточку.\n");
 						}
 					}
-					else if ((target_y - current_figure_y == -2) and(current_figure_y == 6))
+					else if ((target_y - current_figure_y == -2) and (current_figure_y == 6))
 					{
-						f (pole[current_figure_x][current_figure_y - 2] == 0)
+						if (pole[current_figure_x][current_figure_y - 2] == 0)
 						{
 							printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y - 2);
 							valid_move = true;
 						}
 						else
 						{
-							printf("Низя ходить в занятую клеточку.\n")
+							printf("Низя ходить в занятую клеточку.\n");
 						}
 					}
 					else
 					{
-						printf("Так пешка не ходит\n")
+						printf("Так пешка не ходит\n");
 					}
 				}
-		
+
 				else if (abs(target_x - current_figure_x) == 1)
 				{
 					if (pole[target_x][target_y - 1] >= 10)
@@ -155,7 +154,7 @@ int main()
 					}
 					else
 					{
-						printf("Туды рубыть не положено.\n")
+						printf("Туды рубыть не положено.\n");
 					}
 				}
 			}
@@ -191,9 +190,9 @@ int main()
 		}
 		break;
 	}
-	case 03: 
+	case 03:
 	{
-	// чёрный слон
+		// чёрный слон
 		bool valid_move = false;
 		while (!valid_move)
 		{
@@ -209,40 +208,37 @@ int main()
 				qy = target_y - current_figure_y / abs(target_y - current_figure_y);
 				for (int i = 1; i < 8; i++)
 				{
-					if (q1)
+					if (((current_figure_x + i * qx < 8) and (current_figure_x + i * qx >= 0)) and ((current_figure_y + i * qy < 8) and (current_figure_y + i * qy >= 0)))
 					{
-						if (((current_figure_x + i * qx < 8) and(current_figure_x + i * qx >= 0)) and ((current_figure_y + i * qy < 8) and(current_figure_y + i * qy >= 0)))
+						if (pole[current_figure_x + i * qx][current_figure_y + i * qy])
 						{
-							if (pole[current_figure_x + i * qx][current_figure_y + i * qy])
-							{
-								if (pole[current_figure_x + i * qx][current_figure_y + i * qy] / 10)
-								{
-									if ((current_figure_x + i * qx == target_x) and (current_figure_y + i * qy == target_y))
-									{
-										printf("Слон может забрать фигуру на (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
-										valid_move = true;
-										break;
-									}
-									else
-									{
-										printf("А клеточка то, таки уже занята.\n");
-										break;
-									}
-								}
-								else
-								{
-									printf("Наш слон своих не рубит.\n")
-									break;
-							}	
-							}
-							else
+							if (pole[current_figure_x + i * qx][current_figure_y + i * qy] / 10)
 							{
 								if ((current_figure_x + i * qx == target_x) and (current_figure_y + i * qy == target_y))
 								{
-									printf("Слон может сходить на (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
+									printf("Слон может забрать фигуру на (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
 									valid_move = true;
 									break;
 								}
+								else
+								{
+									printf("А клеточка то, таки уже занята.\n");
+									break;
+								}
+							}
+							else
+							{
+								printf("Наш слон своих не рубит.\n");
+									break;
+							}
+						}
+						else
+						{
+							if ((current_figure_x + i * qx == target_x) and (current_figure_y + i * qy == target_y))
+							{
+								printf("Слон может сходить на (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
+								valid_move = true;
+								break;
 							}
 						}
 					}
@@ -373,59 +369,60 @@ int main()
 		break;
 	}
 	case 11: {
-		int valid_move = 0
-		/*
-		белая пешка
-		*/
-		while(!valid_move)
-		{	if (target_y - current_figure_y == 1)
+		int valid_move = 0;
+			/*
+			белая пешка
+			*/
+			while (!valid_move)
 			{
-				if (target_x == current_figure_x)
+				if (target_y - current_figure_y == 1)
 				{
-					if (target_y - current_figure_y == 1)
+					if (target_x == current_figure_x)
 					{
-						if (pole[current_figure_x][current_figure_y + 1] == 0)
+						if (target_y - current_figure_y == 1)
 						{
-							printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y + 1);
+							if (pole[current_figure_x][current_figure_y + 1] == 0)
+							{
+								printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y + 1);
+								valid_move = true;
+							}
+							else
+							{
+								printf("Низя ходить в занятую клеточку.\n");
+							}
+						}
+						else if ((target_y - current_figure_y == 2) and (current_figure_y == 1))
+						{
+							if (pole[current_figure_x][current_figure_y + 2] == 0)
+							{
+								printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y + 2);
+								valid_move = true;
+							}
+							else
+							{
+								printf("Низя ходить в занятую клеточку.\n");
+							}
+						}
+						else
+						{
+							printf("Так пешка не ходит\n");
+						}
+					}
+
+					else if (abs(target_x - current_figure_x) == 1)
+					{
+						if ((pole[target_x][target_y + 1] <= 10) and (pole[target_x][target_y + 1] > 0))
+						{
+							printf("Пешка могёт забрать фигуру на (%d, %d)\n", target_x, target_y);
 							valid_move = true;
 						}
 						else
 						{
-							printf("Низя ходить в занятую клеточку.\n")
+							printf("Туды рубыть не положено.\n");
 						}
-					}
-					else if ((target_y - current_figure_y == 2) and(current_figure_y == 1))
-					{
-						if (pole[current_figure_x][current_figure_y + 2] == 0)
-						{
-							printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y + 2);
-							valid_move = true;
-						}
-						else
-						{
-							printf("Низя ходить в занятую клеточку.\n")
-						}
-					}
-					else
-					{
-						printf("Так пешка не ходит\n")
-					}
-				}
-		
-				else if (abs(target_x - current_figure_x) == 1)
-				{
-					if ((pole[target_x][target_y + 1] <= 10) and (pole[target_x][target_y + 1] > 0))
-					{
-						printf("Пешка могёт забрать фигуру на (%d, %d)\n", target_x, target_y);
-						valid_move = true;
-					}
-					else
-					{
-						printf("Туды рубыть не положено.\n")
 					}
 				}
 			}
-		}
 		pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
 		pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
 
@@ -451,7 +448,7 @@ int main()
 		break;
 	}
 	case 13: {
-	// белый слон
+		// белый слон
 		bool valid_move = false;
 		while (!valid_move)
 		{
@@ -467,40 +464,37 @@ int main()
 				qy = target_y - current_figure_y / abs(target_y - current_figure_y);
 				for (int i = 1; i < 8; i++)
 				{
-					if (q1)
+					if (((current_figure_x + i * qx < 8) and (current_figure_x + i * qx >= 0)) and ((current_figure_y + i * qy < 8) and (current_figure_y + i * qy >= 0)))
 					{
-						if (((current_figure_x + i * qx < 8) and(current_figure_x + i * qx >= 0)) and ((current_figure_y + i * qy < 8) and(current_figure_y + i * qy >= 0)))
+						if (pole[current_figure_x + i * qx][current_figure_y + i * qy])
 						{
-							if (pole[current_figure_x + i * qx][current_figure_y + i * qy])
-							{
-								if (pole[current_figure_x + i * qx][current_figure_y + i * qy] / 10 == 0)
-								{
-									if ((current_figure_x + i * qx == target_x) and (current_figure_y + i * qy == target_y))
-									{
-										printf("Слон может забрать фигуру на (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
-										valid_move = true;
-										break;
-									}
-									else
-									{
-										printf("А клеточка то, таки уже занята.\n");
-										break;
-									}
-								}
-								else
-								{
-									printf("Наш слон своих не рубит.\n")
-									break;
-							}	
-							}
-							else
+							if (pole[current_figure_x + i * qx][current_figure_y + i * qy] / 10 == 0)
 							{
 								if ((current_figure_x + i * qx == target_x) and (current_figure_y + i * qy == target_y))
 								{
-									printf("Слон может сходить на (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
+									printf("Слон может забрать фигуру на (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
 									valid_move = true;
 									break;
 								}
+								else
+								{
+									printf("А клеточка то, таки уже занята.\n");
+									break;
+								}
+							}
+							else
+							{
+								printf("Наш слон своих не рубит.\n");
+									break;
+							}
+						}
+						else
+						{
+							if ((current_figure_x + i * qx == target_x) and (current_figure_y + i * qy == target_y))
+							{
+								printf("Слон может сходить на (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
+								valid_move = true;
+								break;
 							}
 						}
 					}
@@ -648,6 +642,7 @@ int main()
 		}
 		printf("\n");
 	}
+	printf("%d", pole[0][2]);
 }
 
 /*
