@@ -111,15 +111,15 @@ int main()
 		*/
 		while (!valid_move)
 		{
-				if (target_y - current_figure_y <= -1)
+				if (target_y - current_figure_y >= 1)
 				{
 					if (target_x == current_figure_x)
 					{
-						if (target_y - current_figure_y == -1)
+						if (target_y - current_figure_y == 1)
 						{
-							if (pole[current_figure_x][current_figure_y - 1] == 0)
+							if (pole[current_figure_x][current_figure_y + 1] == 0)
 							{
-								printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y - 1);
+								printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y + 1);
 								valid_move = true;
 							}
 							else
@@ -128,11 +128,11 @@ int main()
 								scanf("%d %d", target_x, target_y);
 							}
 						}
-						else if ((target_y - current_figure_y == -2) and (current_figure_y == 6))
+						else if ((target_y - current_figure_y == 2) and (current_figure_y == 1))
 						{
-							if (pole[current_figure_x][current_figure_y - 2] == 0)
+							if (pole[current_figure_x][current_figure_y + 2] == 0)
 							{
-								printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y - 2);
+								printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y + 2);
 								valid_move = true;
 							}
 							else
@@ -150,7 +150,7 @@ int main()
 
 					else if (abs(target_x - current_figure_x) == 1)
 					{
-						if ((pole[target_x][target_y] > 10) and (target_y == current_figure_y - 1))
+						if ((pole[target_x][target_y] > 10) and (target_y == current_figure_y + 1))
 						{
 							printf("Пешка могёт забрать фигуру на (%d, %d)\n", target_x, target_y);
 							valid_move = true;
@@ -214,8 +214,8 @@ int main()
 			else
 			{
 				int qx, qy;
-				qx = target_x - current_figure_x / abs(target_x - current_figure_x);
-				qy = target_y - current_figure_y / abs(target_y - current_figure_y);
+				qx = (target_x - current_figure_x) / abs(target_x - current_figure_x);
+				qy = (target_y - current_figure_y) / abs(target_y - current_figure_y);
 				for (int i = 1; i < 8; i++)
 				{
 					if (((current_figure_x + i * qx < 8) and (current_figure_x + i * qx >= 0)) and ((current_figure_y + i * qy < 8) and (current_figure_y + i * qy >= 0)))
@@ -385,15 +385,15 @@ int main()
 			*/
 			while (!valid_move)
 			{
-				if (target_y - current_figure_y >= 1)
+				if (target_y - current_figure_y >= -1)
 				{
 					if (target_x == current_figure_x)
 					{
-						if (target_y - current_figure_y == 1)
+						if (target_y - current_figure_y == -1)
 						{
-							if (pole[current_figure_x][current_figure_y + 1] == 0)
+							if (pole[current_figure_x][current_figure_y - 1] == 0)
 							{
-								printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y + 1);
+								printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y - 1);
 								valid_move = true;
 							}
 							else
@@ -402,11 +402,11 @@ int main()
 								scanf("%d %d", target_x, target_y);
 							}
 						}
-						else if ((target_y - current_figure_y == 2) and (current_figure_y == 1))
+						else if ((target_y - current_figure_y == -2) and (current_figure_y == 6))
 						{
-							if (pole[current_figure_x][current_figure_y + 2] == 0)
+							if (pole[current_figure_x][current_figure_y - 2] == 0)
 							{
-								printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y + 2);
+								printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y - 2);
 								valid_move = true;
 							}
 							else
@@ -424,7 +424,7 @@ int main()
 
 					else if (abs(target_x - current_figure_x) == 1)
 					{
-						if ((pole[target_x][target_y] <= 10) and (pole[target_x][target_y] > 0) and (target_y == current_figure_y + 1))
+						if ((pole[target_x][target_y] <= 10) and (pole[target_x][target_y] > 0) and (target_y == current_figure_y - 1))
 						{
 							printf("Пешка могёт забрать фигуру на (%d, %d)\n", target_x, target_y);
 							valid_move = true;
