@@ -98,7 +98,7 @@ int main()
 
 	switch (pole[current_figure_x][current_figure_y]) {
 	case 01: {
-		int valid_move = 0;
+		bool valid_move = false;
 		/*
 		черная пешка
 		ходит вверх по доске, потому что доска повёрнута со стороны чёрных ==>
@@ -117,9 +117,9 @@ int main()
 					{
 						if (target_y - current_figure_y == 1)
 						{
-							if (pole[current_figure_x][current_figure_y + 1] == 0)
+							if (pole[target_x][target_y] == 0)
 							{
-								printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y + 1);
+								printf("Мозя сходить на клеточку (%d, %d).\n", target_x, target_y);
 								valid_move = true;
 							}
 							else
@@ -379,7 +379,7 @@ int main()
 		break;
 	}
 	case 11: {
-		int valid_move = 0;
+		bool valid_move = false;
 			/*
 			белая пешка
 			*/
