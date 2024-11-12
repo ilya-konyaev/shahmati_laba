@@ -125,7 +125,7 @@ int main()
 							else
 							{
 								printf("Низя ходить в занятую клеточку.\n");
-								scanf("%d %d", target_x, target_y);
+								scanf("%d %d", &target_x, &target_y);
 							}
 						}
 						else if ((target_y - current_figure_y == 2) and (current_figure_y == 1))
@@ -138,13 +138,13 @@ int main()
 							else
 							{
 								printf("Низя ходить в занятую клеточку.\n");
-								scanf("%d %d", target_x, target_y);
+								scanf("%d %d", &target_x, &target_y);
 							}
 						}
 						else
 						{
 							printf("Так пешка не ходит\n");
-							scanf("%d %d", target_x, target_y);
+							scanf("%d %d", &target_x, &target_y);
 						}
 					}
 
@@ -165,7 +165,7 @@ int main()
 				else
 				{
 					printf("Пешка так не ходит.\n");
-					scanf("%d %d", target_x, target_y);
+					scanf("%d %d", &target_x, &target_y);
 				}
 		}
 		pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
@@ -209,7 +209,7 @@ int main()
 			if ((abs(target_x - current_figure_x) != abs(target_y - current_figure_y)) or (target_x - current_figure_x == 0))
 			{
 				printf("Введена некорректная координата\nВведите новую координату\n");
-				scanf_s("%d%d", &target_x, &target_y);
+				scanf_s("%d %d", &target_x, &target_y);
 			}
 			else
 			{
@@ -399,7 +399,7 @@ int main()
 							else
 							{
 								printf("Низя ходить в занятую клеточку.\n");
-								scanf("%d %d", target_x, target_y);
+								scanf("%d %d", &target_x, &target_y);
 							}
 						}
 						else if ((target_y - current_figure_y == -2) and (current_figure_y == 6))
@@ -418,7 +418,7 @@ int main()
 						else
 						{
 							printf("Так пешка не ходит\n");
-							scanf("%d %d", target_x, target_y);
+							scanf("%d %d", &target_x, &target_y);
 						}
 					}
 
@@ -432,14 +432,14 @@ int main()
 						else
 						{
 							printf("Туды рубыть не положено.\n");
-							scanf("%d %d", target_x, target_y);
+							scanf("%d %d", &target_x, &target_y);
 						}
 					}
 				}
 				else
 				{
 					printf("Пешка так не ходит.\n");
-					scanf("%d %d", target_x, target_y);
+					scanf("%d %d", &target_x, &target_y);
 				}
 			}
 		pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
@@ -474,7 +474,7 @@ int main()
 			if ((abs(target_x - current_figure_x) != abs(target_y - current_figure_y)) or (target_x - current_figure_x == 0))
 			{
 				printf("Введена некорректная координата\nВведите новую координату\n");
-				scanf_s("%d%d", &target_x, &target_y);
+				scanf_s("%d %d", &target_x, &target_y);
 			}
 			else
 			{
