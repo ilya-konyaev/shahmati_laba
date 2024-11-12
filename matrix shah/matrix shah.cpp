@@ -111,56 +111,66 @@ int main()
 		*/
 		while (!valid_move)
 		{
-			if (target_y - current_figure_y == -1)
-			{
-				if (target_x == current_figure_x)
+				if (target_y - current_figure_y <= -1)
 				{
-					if (target_y - current_figure_y == -1)
+					if (target_x == current_figure_x)
 					{
-						if (pole[current_figure_x][current_figure_y - 1] == 0)
+						if (target_y - current_figure_y == -1)
 						{
-							printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y - 1);
-							valid_move = true;
+							if (pole[current_figure_x][current_figure_y - 1] == 0)
+							{
+								printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y - 1);
+								valid_move = true;
+							}
+							else
+							{
+								printf("Низя ходить в занятую клеточку.\n");
+								scanf("%d %d", target_x, target_y);
+							}
+						}
+						else if ((target_y - current_figure_y == -2) and (current_figure_y == 6))
+						{
+							if (pole[current_figure_x][current_figure_y - 2] == 0)
+							{
+								printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y - 2);
+								valid_move = true;
+							}
+							else
+							{
+								printf("Низя ходить в занятую клеточку.\n");
+								scanf("%d %d", target_x, target_y);
+							}
 						}
 						else
 						{
-							printf("Низя ходить в занятую клеточку.\n");
+							printf("Так пешка не ходит\n");
+							scanf("%d %d", target_x, target_y);
 						}
 					}
-					else if ((target_y - current_figure_y == -2) and (current_figure_y == 6))
-					{
-						if (pole[current_figure_x][current_figure_y - 2] == 0)
-						{
-							printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y - 2);
-							valid_move = true;
-						}
-						else
-						{
-							printf("Низя ходить в занятую клеточку.\n");
-						}
-					}
-					else
-					{
-						printf("Так пешка не ходит\n");
-					}
-				}
 
-				else if (abs(target_x - current_figure_x) == 1)
-				{
-					if (pole[target_x][target_y - 1] >= 10)
+					else if (abs(target_x - current_figure_x) == 1)
 					{
-						printf("Пешка могёт забрать фигуру на (%d, %d)\n", target_x, target_y);
-						valid_move = true;
-					}
-					else
-					{
-						printf("Туды рубыть не положено.\n");
+						if ((pole[target_x][target_y] > 10) and (target_y == current_figure_y - 1))
+						{
+							printf("Пешка могёт забрать фигуру на (%d, %d)\n", target_x, target_y);
+							valid_move = true;
+						}
+						else
+						{
+							printf("Туды рубыть не положено.\n");
+							scanf("%d %d", target_x, target_y);
+						}
 					}
 				}
-			}
+				else
+				{
+					printf("Пешка так не ходит.\n");
+					scanf("%d %d", target_x, target_y);
+				}
 		}
 		pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
 		pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+
 		break;
 	}
 	case 02:
@@ -375,7 +385,7 @@ int main()
 			*/
 			while (!valid_move)
 			{
-				if (target_y - current_figure_y == 1)
+				if (target_y - current_figure_y >= 1)
 				{
 					if (target_x == current_figure_x)
 					{
@@ -389,6 +399,7 @@ int main()
 							else
 							{
 								printf("Низя ходить в занятую клеточку.\n");
+								scanf("%d %d", target_x, target_y);
 							}
 						}
 						else if ((target_y - current_figure_y == 2) and (current_figure_y == 1))
@@ -401,17 +412,19 @@ int main()
 							else
 							{
 								printf("Низя ходить в занятую клеточку.\n");
+								scanf("%d %d", target_x, target_y);
 							}
 						}
 						else
 						{
 							printf("Так пешка не ходит\n");
+							scanf("%d %d", target_x, target_y);
 						}
 					}
 
 					else if (abs(target_x - current_figure_x) == 1)
 					{
-						if ((pole[target_x][target_y + 1] <= 10) and (pole[target_x][target_y + 1] > 0))
+						if ((pole[target_x][target_y] <= 10) and (pole[target_x][target_y] > 0) and (target_y == current_figure_y + 1))
 						{
 							printf("Пешка могёт забрать фигуру на (%d, %d)\n", target_x, target_y);
 							valid_move = true;
@@ -419,8 +432,14 @@ int main()
 						else
 						{
 							printf("Туды рубыть не положено.\n");
+							scanf("%d %d", target_x, target_y);
 						}
 					}
+				}
+				else
+				{
+					printf("Пешка так не ходит.\n");
+					scanf("%d %d", target_x, target_y);
 				}
 			}
 		pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
