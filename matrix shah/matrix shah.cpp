@@ -125,7 +125,7 @@ int main()
 							else
 							{
 								printf("Низя ходить в занятую клеточку.\n");
-								scanf("%d %d", &target_x, &target_y);
+								scanf_s("%d %d", &target_x, &target_y);
 							}
 						}
 						else if ((target_y - current_figure_y == 2) and (current_figure_y == 1))
@@ -138,13 +138,13 @@ int main()
 							else
 							{
 								printf("Низя ходить в занятую клеточку.\n");
-								scanf("%d %d", &target_x, &target_y);
+								scanf_s("%d %d", &target_x, &target_y);
 							}
 						}
 						else
 						{
 							printf("Так пешка не ходит\n");
-							scanf("%d %d", &target_x, &target_y);
+							scanf_s("%d %d", &target_x, &target_y);
 						}
 					}
 
@@ -158,14 +158,14 @@ int main()
 						else
 						{
 							printf("Туды рубыть не положено.\n");
-							scanf("%d %d", target_x, target_y);
+							scanf_s("%d %d", target_x, target_y);
 						}
 					}
 				}
 				else
 				{
 					printf("Пешка так не ходит.\n");
-					scanf("%d %d", &target_x, &target_y);
+					scanf_s("%d %d", &target_x, &target_y);
 				}
 		}
 		pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
@@ -204,8 +204,6 @@ int main()
 	{
 		// чёрный слон
 		bool valid_move = false;
-		while (!valid_move)
-		{
 			if ((abs(target_x - current_figure_x) != abs(target_y - current_figure_y)) or (target_x - current_figure_x == 0))
 			{
 				printf("Введена некорректная координата\nВведите новую координату\n");
@@ -252,14 +250,15 @@ int main()
 							}
 						}
 					}
+
 				}
-				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
-				pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
-				break;
+				if (valid_move) {
+					pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
+					pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+					break;
+				}
 			}
-		}
-		pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
-		pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию  */
+
 		break;
 	}
 	case 04: {
@@ -369,8 +368,121 @@ int main()
 		break;
 	}
 	case 05: {
-		//чёрный ферзь
+		int valid_move = 0;
+		while (!valid_move) {
+			scanf_s("%d%d", &target_x, &target_y);
+			// Проверка движения по вертикали (если target_x == current_figure_x)
+			if (target_x == current_figure_x) {
+				int step;
+				if (target_y > current_figure_y) {
+					step = 1; // Двигаемся вверх
+				}
+				else {
+					step = -1; // Двигаемся вниз
+				}
 
+				// Проверяем клетки по пути от текущей позиции до целевой
+				for (int i = current_figure_y + step; i != target_y; i += step) {
+					if (pole[current_figure_x][i] != 0) { // Если встретилась фигура
+						if (pole[current_figure_x][i] / 10 == 0) { // Своя фигура
+							printf("Невозможный ход: встречена своя фигура на (%d, %d)\n", current_figure_x, i);
+							valid_move = 0; // Сброс флага
+							break;
+						}
+						else if (pole[current_figure_x][i] / 10 == 1) { // Вражеская фигура
+							printf("Невозможный ход: встречена вражеская фигура на (%d, %d)\n", current_figure_x, i);
+							valid_move = 0; // Сброс флага
+							break;
+						}
+					}
+				}
+
+				if (valid_move == 0) continue; // Если движение невозможно, продолжаем запрос координат
+
+				valid_move = 1; // Если путь свободен, ход возможен
+			}
+			// Проверка движения по горизонтали (если target_y == current_figure_y)
+			else if (target_y == current_figure_y) {
+				int step;
+				if (target_x > current_figure_x) {
+					step = 1; // Двигаемся вправо
+				}
+				else {
+					step = -1; // Двигаемся влево
+				}
+
+				// Проверяем клетки по пути от текущей позиции до целевой
+				for (int j = current_figure_x + step; j != target_x; j += step) {
+					if (pole[j][current_figure_y] != 0) { // Если встретилась фигура
+						if (pole[j][current_figure_y] / 10 == 0) { // Своя фигура
+							printf("Невозможный ход: встречена своя фигура на (%d, %d)\n", j, current_figure_y);
+							valid_move = 0; // Сброс флага
+							break;
+						}
+						else if (pole[j][current_figure_y] / 10 == 1) { // Вражеская фигура
+							printf("Невозможный ход: встречена вражеская фигура на (%d, %d)\n", j, current_figure_y);
+							valid_move = 0; // Сброс флага
+							break;
+						}
+					}
+				}
+				if (valid_move == 0) continue; // Если движение невозможно, продолжаем запрос координат
+
+				valid_move = 1; // Если путь свободен, ход возможен
+			}
+			// Проверка диагональных движений
+			else if (abs(target_x - current_figure_x) == abs(target_y - current_figure_y)) {
+				int dx, dy;
+				if (target_x > current_figure_x) {
+					dx = 1; // Двигаемся вправо
+				}
+				else {
+					dx = -1; // Двигаемся влево
+				}
+				if (target_y > current_figure_y) {
+					dy = 1; // Двигаемся вверх
+				}
+				else {
+					dy = -1; // Двигаемся вниз
+				}
+
+				int x = current_figure_x + dx;
+				int y = current_figure_y + dy;
+
+				// Проверяем клетки на пути диагонали
+				while (x != target_x && y != target_y) {
+					if (pole[x][y] != 0) {
+						if (pole[x][y] / 10 == 0) { // Своя фигура
+							printf("Невозможный ход: встречена своя фигура на (%d, %d)\n", x, y);
+							valid_move = 0; // Сброс флага
+							break;
+						}
+						else if (pole[x][y] / 10 == 1) { // Вражеская фигура
+							printf("Невозможный ход: встречена вражеская фигура на (%d, %d)\n", x, y);
+							valid_move = 0; // Сброс флага
+							break;
+						}
+					}
+					x += dx;
+					y += dy;
+				}
+
+				if (valid_move == 0) continue; // Если движение невозможно, продолжаем запрос координат
+
+				valid_move = 1; // Если путь свободен, ход возможен
+			}
+			else {
+				printf("Ферзь может двигаться только по вертикали, горизонтали или диагонали.\n");
+				valid_move = 0; // Сброс флага
+			}
+
+			if (valid_move) {
+				// Обновляем состояние доски: перемещаем ферзя
+				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
+				pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+				printf("Ферзь перемещен на (%d, %d)\n", target_x, target_y);
+			}
+		}
 		break;
 	}
 	case 06: {
@@ -399,7 +511,7 @@ int main()
 							else
 							{
 								printf("Низя ходить в занятую клеточку.\n");
-								scanf("%d %d", &target_x, &target_y);
+								scanf_s("%d %d", &target_x, &target_y);
 							}
 						}
 						else if ((target_y - current_figure_y == -2) and (current_figure_y == 6))
@@ -412,13 +524,13 @@ int main()
 							else
 							{
 								printf("Низя ходить в занятую клеточку.\n");
-								scanf("%d %d", target_x, target_y);
+								scanf_s("%d %d", &target_x, &target_y);
 							}
 						}
 						else
 						{
 							printf("Так пешка не ходит\n");
-							scanf("%d %d", &target_x, &target_y);
+							scanf_s("%d %d", &target_x, &target_y);
 						}
 					}
 
@@ -432,14 +544,14 @@ int main()
 						else
 						{
 							printf("Туды рубыть не положено.\n");
-							scanf("%d %d", &target_x, &target_y);
+							scanf_s("%d %d", &target_x, &target_y);
 						}
 					}
 				}
 				else
 				{
 					printf("Пешка так не ходит.\n");
-					scanf("%d %d", &target_x, &target_y);
+					scanf_s("%d %d", &target_x, &target_y);
 				}
 			}
 		pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
