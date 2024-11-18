@@ -2290,38 +2290,46 @@ int main()
 			}
 			if (r % 2)
 			{
-				if (chornomu_shah[niger[0]][niger[1]] == 0)
+				if (chornomu_shah[niger[0]][niger[1]] == 1)
 				{
-					flag = false;
+					if (r % 2 == 1) {
+						printf("Чёрный Король под шахом!\n");
+						for (int i = 0; i < 8; i++)
+						{
+							for (int j = 0; j < 8; j++)
+							{
+								pole[i][j] = copy_pole[i][j];
+								chornomu_shah[i][j] = copy_chornomu_shah[i][j];
+							}
+						}
+					}
 				}
 				else
 				{
-					for (int i = 0; i < 8; i++)
-					{
-						for (int j = 0; j < 8; j++)
-						{
-							pole[i][j] = copy_pole[i][j];
-							chornomu_shah[i][j] = copy_chornomu_shah[i][j];
-						}
-					}
+					flag = false;
+					
 				}
 			}
 			else
 			{
-				if (belomu_shah[rasist[0]][rasist[1]] == 0)
+				if (belomu_shah[rasist[0]][rasist[1]] == 1)
 				{
-					flag = false;
+					if (r % 2 == 0) {
+						printf("Белый Король под шахом!\n");
+						for (int i = 0; i < 8; i++)
+						{
+							for (int j = 0; j < 8; j++)
+							{
+								pole[i][j] = copy_pole[i][j];
+								belomu_shah[i][j] = copy_belomu_shah[i][j];
+							}
+						}
+					}
 				}
 				else
 				{
-					for (int i = 0; i < 8; i++)
-					{
-						for (int j = 0; j < 8; j++)
-						{
-							pole[i][j] = copy_pole[i][j];
-							belomu_shah[i][j] = copy_belomu_shah[i][j];
-						}
-					}
+					flag = false;
+					
 				}
 			}
 		}
