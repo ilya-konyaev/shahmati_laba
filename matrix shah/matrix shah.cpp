@@ -14,8 +14,10 @@ int main()
 	int pole[8][8] = { 0 };
 	char translate[17] = { ' ', 'П', 'К', 'С', 'Л', 'Ф', 'Ц', ' ', ' ', ' ', ' ', 'п', 'к', 'с', 'л', 'ф', 'ц' };
 	int belomu_shah[8][8] = { 0 }, chornomu_shah[8][8] = { 0 };
-
-
+	int copy_pole[8][8] = { 0 };
+	int copy_belomu_shah[8][8] = { 0 };
+	int copy_chornomu_shah[8][8] = { 0 };
+	int niger[2] = { -1, -1 }, rasist[2] = { -1, -1 };
 
 	printf("Введите координаты сначала белые x потом y в таком порядке, затем чёрные в том же порядке: \n пешка \n конь \n слон \n ладья \n ферзь \n король: \n");
 	for (int color = 0; color <= 10; color += 10)
@@ -357,7 +359,7 @@ int main()
 						}
 					}
 				}
-				int nigger[2] = { x, y };
+				niger[2] = { x, y };
 				break;
 			}
 			case 11: // какую угрозу белому королю представляет черная peshka
@@ -671,12 +673,42 @@ int main()
 						}
 					}
 				}
-				int rasist[2] = { x, y };
+				rasist[2] = { x, y };
 				break;
 			}
 			}
 		}
 	}
+	bool flag;
+	for (int r = 1; r < 21; r++) {
+	if (r % 2 == 1) {
+		if (chornomu_shah[niger[0]][niger[1]]) {
+			for (int i = 0; i < 8; i++)
+			{
+				for (int j = 0; j < 8; j++)
+				{
+					copy_pole[i][j] = pole[i][j];
+					copy_chornomu_shah[i][j] = chornomu_shah[i][j];
+					flag = true;
+				}
+			}
+		}
+	}
+	else {
+		if(belomu_shah[rasist[0]][rasist[1]]) {
+			for (int i = 0; i < 8; i++)
+			{
+				for (int j = 0; j < 8; j++)
+				{
+					copy_pole[i][j] = pole[i][j];
+					copy_belomu_shah[i][j] = belomu_shah[i][j];
+					flag = true;
+				}
+			}
+		}
+	}
+	
+
 	for (int i = 0; i < 8; i++)
 	{
 		for (int j = 0; j < 8; j++)
@@ -687,7 +719,7 @@ int main()
 	}
 
 
-	for (int r = 1; r < 21; r++) {
+
 		// вывод шахматной доски и фигур на ней
 		for (int x = 0; x <= 7; x++) {
 			for (int y = 0; y <= 7; y++) {
@@ -1619,26 +1651,25 @@ int main()
 
 		}
 		}
-
-		// вывод шахматной доски и фигур на ней
-		for (int x = 0; x <= 7; x++) {
-			for (int y = 0; y <= 7; y++) {
-				if (pole[x][y] == 0) { // Пусто
-					if ((x + y) % 2 == 0) {
-						printf("#");
-					}
-					else {
-						printf(" ");
-					}
+	}
+	// вывод шахматной доски и фигур на ней
+	for (int x = 0; x <= 7; x++) {
+		for (int y = 0; y <= 7; y++) {
+			if (pole[x][y] == 0) { // Пусто
+				if ((x + y) % 2 == 0) {
+					printf("#");
 				}
-				else { // Есть фигура
-					printf("%c", translate[pole[x][y]]);
+				else {
+					printf(" ");
 				}
 			}
-			printf("\n");
+			else { // Есть фигура
+				printf("%c", translate[pole[x][y]]);
+			}
 		}
-		printf("%d", pole[0][2]);
+		printf("\n");
 	}
+	printf("%d", pole[0][2]);
 }
 
 
