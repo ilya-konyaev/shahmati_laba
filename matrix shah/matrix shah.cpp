@@ -683,7 +683,7 @@ int main()
 	{
 		for (int j = 0; j < 8; j++)
 		{
-			printf("%d ", belomu_shah[i][j]);
+			printf("%d ", chornomu_shah[i][j]);
 		}
 		printf("\n");
  }
@@ -1160,11 +1160,11 @@ int main()
 		//чёрный король
 		bool valid_move = false;
 		while (!valid_move) {
-			if (abs(target_x - current_figure_x) <= 1 && abs(target_y - current_figure_y) <= 1)
+			if (abs(target_x - current_figure_x) <= 1 and abs(target_y - current_figure_y) <= 1)
 			{ // проверка хода на 1 клетку в любую сторону
-				if (chornomu_shah[target_x][target_y])
+				if (chornomu_shah[target_x][target_y] == 0)
 				{
-					if (pole[target_x][target_y] == 0 || pole[target_x][target_y] / 10 != ocurrent_figure / 10)
+					if (pole[target_x][target_y] == 0 or pole[target_x][target_y] / 10 != ocurrent_figure / 10)
 					{
 						valid_move = true;
 						printf("Король может сходить на (%d, %d)\n", target_x, target_y);
@@ -1184,6 +1184,7 @@ int main()
 			else
 			{
 				printf("Клетка (%d, %d) под ударом.\n", target_x, target_y);
+				scanf_s("%d%d", &target_x, &target_y);
 			}
 		}
 		pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
@@ -1588,7 +1589,7 @@ int main()
 		while (!valid_move) {
 			if (abs(target_x - current_figure_x) <= 1 && abs(target_y - current_figure_y) <= 1)
 			{ // проверка хода на 1 клетку в любую сторону
-				if (belomu_shah[target_x][target_y])
+				if (belomu_shah[target_x][target_y] == 0)
 				{
 					if (pole[target_x][target_y] == 0 || pole[target_x][target_y] / 10 != ocurrent_figure / 10)
 					{
@@ -1598,11 +1599,13 @@ int main()
 					else
 					{
 						printf("Король не может занять клетку с фигурой своего цвета.\n");
+						
 					}
 				}
 				else
 				{
 					printf("Клетка (%d, %d) под ударом.\n", target_x, target_y);
+					scanf_s("%d%d", &target_x, &target_y);
 				}
 			}
 			else {
@@ -1637,6 +1640,7 @@ int main()
 	}
 	printf("%d", pole[0][2]);
 }
+
 
 /*
 1 1
