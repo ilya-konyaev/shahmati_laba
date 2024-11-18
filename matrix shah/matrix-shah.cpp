@@ -772,7 +772,11 @@ int main()
 					if (((ocurrent_figure / 10) == (pole[target_x][target_y] / 10)) and rubit) {
 						printf("фигура ходит на фигуру своего цвета %c %c\n", translate[ocurrent_figure], translate[pole[target_x][target_y]]);
 					}
-					else break;
+					else {
+						if ((target_x == niger[0] and target_y == niger[1]) or (target_x == rasist[0] and target_y == rasist[1]))
+							printf("Вы пытаетесь срубить короля!!!!\n");
+						else break;
+					}
 				}
 			}
 
@@ -1649,6 +1653,12 @@ int main()
 			}
 			}
 			//изменение матриц белый шах чёрный шах
+			for (int i = 0; i < 8; i++) {
+				for (int j = 0; j < 8; j++) {
+					chornomu_shah[i][j] = 0;
+					belomu_shah[i][j] = 0;
+				}
+			}
 			for (int x = 0; x < 8; x++)
 			{
 				for (int y = 0; y < 8; y++)
@@ -2300,6 +2310,14 @@ int main()
 							{
 								pole[i][j] = copy_pole[i][j];
 								chornomu_shah[i][j] = copy_chornomu_shah[i][j];
+								for (int i = 0; i < 8; i++)
+								{
+									for (int j = 0; j < 8; j++)
+									{
+										printf("%d ", chornomu_shah[i][j]);
+									}
+									printf("\n");
+								}
 							}
 						}
 					}
@@ -2369,5 +2387,5 @@ int main()
 4 3
 4 4
 4 5
-4 6
+2 6
 */
