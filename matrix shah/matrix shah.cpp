@@ -361,8 +361,6 @@ int main()
 						}
 					}
 					break;
-
-					break;
 				}
 				case 11: // какую угрозу белому королю представляет черная peshka
 				{
@@ -675,8 +673,6 @@ int main()
 							}
 						}
 					}
-					break;
-
 					break;
 				}
 				}
