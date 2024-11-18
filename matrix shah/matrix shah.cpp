@@ -1,4 +1,4 @@
-﻿
+
 #include <iostream>
 
 /*
@@ -2290,13 +2290,17 @@ int main()
 			if (r % 2)
 			{
 				if (chornomu_shah[niger[0]][niger[1]] == 0)
+				{
 					flag = false;
+				}
 			}
 			else
 			{
-
+				if (belomu_shah[rasist[0]][rasist[1]] == 0)
+				{
+					flag = false;
+				}
 			}
-			
 		}
 		// вывод шахматной доски и фигур на ней
 		for (int x = 0; x <= 7; x++) {
