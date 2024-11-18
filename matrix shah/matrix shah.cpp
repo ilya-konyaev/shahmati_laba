@@ -190,37 +190,41 @@ int main()
 			}
 			case 4: //какую угрозу королю представляет ладья
 			{
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (x - i < 0) {
 						break;
 					}
 					else {
 						belomu_shah[x - i][y] = 1;
 					}
+					if (pole[x - i][y] != 0) break;
 				}
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (x + i > 7) {
 						break;
 					}
 					else {
 						belomu_shah[x + i][y] = 1;
 					}
+					if (pole[x + i][y] != 0) break;
 				}
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (y - i < 0) {
 						break;
 					}
 					else {
 						belomu_shah[x][y - i] = 1;
 					}
+					if (pole[x][y - i] != 0) break;
 				}
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (y + i > 7) {
 						break;
 					}
 					else {
 						belomu_shah[x][y + i] = 1;
 					}
+					if (pole[x][y + i] != 0) break;
 				}
 				break;
 			}
@@ -298,38 +302,63 @@ int main()
 						sum += f[i];
 					}
 				}
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (x - i < 0) {
 						break;
 					}
 					else {
 						belomu_shah[x - i][y] = 1;
 					}
+					if (pole[x - i][y] != 0) break;
 				}
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (x + i > 7) {
 						break;
 					}
 					else {
 						belomu_shah[x + i][y] = 1;
 					}
+					if (pole[x + i][y] != 0) break;
 				}
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (y - i < 0) {
 						break;
 					}
 					else {
 						belomu_shah[x][y - i] = 1;
 					}
+					if (pole[x][y - i] != 0) break;
 				}
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (y + i > 7) {
 						break;
 					}
 					else {
 						belomu_shah[x][y + i] = 1;
 					}
+					if (pole[x][y + i] != 0) break;
 				}
+				break;
+			}
+			case 6: {
+				for (int i = -1; i < 2; i++)
+				{
+					for (int j = -1; j < 2; j++)
+					{
+						if (abs(i) + abs(j))
+						{
+							if ((0 <= x + i) and (x + i < 8))
+							{
+								if ((0 <= y + j) and (y + j < 8))
+								{
+									belomu_shah[x + i][y + j] = 1;
+								}
+							}
+						}
+					}
+				}
+				break;
+
 				break;
 			}
 			case 11: // какую угрозу белому королю представляет черная peshka
@@ -476,37 +505,41 @@ int main()
 			}
 			case 14: //какую угрозу королю представляет ладья
 			{
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (x - i < 0) {
 						break;
 					}
 					else {
 						chornomu_shah[x - i][y] = 1;
 					}
+					if (pole[x - i][y] != 0) break;
 				}
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (x + i > 7) {
 						break;
 					}
 					else {
 						chornomu_shah[x + i][y] = 1;
 					}
+					if (pole[x + i][y] != 0) break;
 				}
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (y - i < 0) {
 						break;
 					}
 					else {
 						chornomu_shah[x][y - i] = 1;
 					}
+					if (pole[x][y - i] != 0) break;
 				}
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (y + i > 7) {
 						break;
 					}
 					else {
 						chornomu_shah[x][y + i] = 1;
 					}
+					if (pole[x][y + i] != 0) break;
 				}
 				break;
 			}
@@ -584,38 +617,63 @@ int main()
 						sum += f[i];
 					}
 				}
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (x - i < 0) {
 						break;
 					}
 					else {
 						chornomu_shah[x - i][y] = 1;
 					}
+					if (pole[x - i][y] != 0) break;
 				}
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (x + i > 7) {
 						break;
 					}
 					else {
 						chornomu_shah[x + i][y] = 1;
 					}
+					if (pole[x + i][y] != 0) break;
 				}
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (y - i < 0) {
 						break;
 					}
 					else {
 						chornomu_shah[x][y - i] = 1;
 					}
+					if (pole[x][y - i] != 0) break;
 				}
-				for (int i = 0; i < 8; i++) {
+				for (int i = 1; i < 8; i++) {
 					if (y + i > 7) {
 						break;
 					}
 					else {
 						chornomu_shah[x][y + i] = 1;
 					}
+					if (pole[x][y + i] != 0) break;
 				}
+				break;
+			}
+			case 16: {
+				for (int i = -1; i < 2; i++)
+				{
+					for (int j = -1; j < 2; j++)
+					{
+						if (abs(i) + abs(j))
+						{
+							if ((0 <= x + i) and (x + i < 8))
+							{
+								if ((0 <= y + j) and (y + j < 8))
+								{
+									chornomu_shah[x + i][y + j] = 1;
+								}
+							}
+						}
+					}
+				}
+				break;
+
 				break;
 			}
 			}
@@ -629,7 +687,6 @@ int main()
 		}
 		printf("\n");
  }
-
 
 
 	// вывод шахматной доски и фигур на ней
@@ -1103,24 +1160,36 @@ int main()
 		//чёрный король
 		bool valid_move = false;
 		while (!valid_move) {
-			if (abs(target_x - current_figure_x) <= 1 && abs(target_y - current_figure_y) <= 1) { // проверка хода на 1 клетку в любую сторону
-				if (pole[target_x][target_y] == 0 || pole[target_x][target_y] / 10 != ocurrent_figure / 10) {
-					valid_move = true;
-					printf("Король может сходить на (%d, %d)\n", target_x, target_y);
+			if (abs(target_x - current_figure_x) <= 1 && abs(target_y - current_figure_y) <= 1)
+			{ // проверка хода на 1 клетку в любую сторону
+				if (chornomu_shah[target_x][target_y])
+				{
+					if (pole[target_x][target_y] == 0 || pole[target_x][target_y] / 10 != ocurrent_figure / 10)
+					{
+						valid_move = true;
+						printf("Король может сходить на (%d, %d)\n", target_x, target_y);
+					}
+					else
+					{
+						printf("Король не может занять клетку с фигурой своего цвета.\n");
+					}
 				}
-				else {
-					printf("Король не может занять клетку с фигурой своего цвета.\n");
+				else
+				{
+					printf("Король может двигаться только на одну клетку в любую сторону.\n");
+					printf("Введите корректные координаты для хода короля:\n");
+					scanf_s("%d %d", &target_x, &target_y);
 				}
 			}
-			else {
-				printf("Король может двигаться только на одну клетку в любую сторону.\n");
-				printf("Введите корректные координаты для хода короля:\n");
-				scanf_s("%d %d", &target_x, &target_y);
+			else
+			{
+				printf("Клетка (%d, %d) под ударом.\n", target_x, target_y);
 			}
 		}
 		pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
 		pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
 		break;
+
 	}
 	case 11: {
 		bool valid_move = false;
@@ -1517,13 +1586,23 @@ int main()
 		//белый король
 		bool valid_move = false;
 		while (!valid_move) {
-			if (abs(target_x - current_figure_x) <= 1 && abs(target_y - current_figure_y) <= 1) { // проверка хода на 1 клетку в любую сторону
-				if (pole[target_x][target_y] == 0 || pole[target_x][target_y] / 10 != ocurrent_figure / 10) {
-					valid_move = true;
-					printf("Король может сходить на (%d, %d)\n", target_x, target_y);
+			if (abs(target_x - current_figure_x) <= 1 && abs(target_y - current_figure_y) <= 1)
+			{ // проверка хода на 1 клетку в любую сторону
+				if (belomu_shah[target_x][target_y])
+				{
+					if (pole[target_x][target_y] == 0 || pole[target_x][target_y] / 10 != ocurrent_figure / 10)
+					{
+						valid_move = true;
+						printf("Король может сходить на (%d, %d)\n", target_x, target_y);
+					}
+					else
+					{
+						printf("Король не может занять клетку с фигурой своего цвета.\n");
+					}
 				}
-				else {
-					printf("Король не может занять клетку с фигурой своего цвета.\n");
+				else
+				{
+					printf("Клетка (%d, %d) под ударом.\n", target_x, target_y);
 				}
 			}
 			else {
@@ -1535,6 +1614,7 @@ int main()
 		pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
 		pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
 		break;
+
 	}
 	}
 
@@ -1569,6 +1649,6 @@ int main()
 4 2
 4 3
 4 4
-3 5
+4 5
 4 6
 */
