@@ -2293,12 +2293,34 @@ int main()
 				{
 					flag = false;
 				}
+				else
+				{
+					for (int i == 0; i < 8; i++)
+					{
+						for (int j == 0; j < 8; j++)
+						{
+							pole[i][j] = copy_pole[i][j];
+							chornomu_shah[i][j] = copy_chornomu_shah[i][j];
+						}
+					}
+				}
 			}
 			else
 			{
 				if (belomu_shah[rasist[0]][rasist[1]] == 0)
 				{
 					flag = false;
+				}
+				else
+				{
+					for (int i == 0; i < 8; i++)
+					{
+						for (int j == 0; j < 8; j++)
+						{
+							pole[i][j] = copy_pole[i][j];
+							belomu_shah[i][j] = copy_belomu_shah[i][j];
+						}
+					}
 				}
 			}
 		}
