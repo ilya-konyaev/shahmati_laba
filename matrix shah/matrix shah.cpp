@@ -39,8 +39,599 @@ int main()
 			}
 		}
 	}
+	//изменение матриц белый шах чёрный шах
+	for(int x = 0; x < 8; x++)
+	{
+		for (int y = 0; y < 8; y++)
+		{
+			switch (pole[x][y])
+			{
+			case 1: // какую угрозу королю представляет peshka
+			{
+				if (x - 1 >= 0)
+				{
+					if (y + 1 < 8)
+					{
+						belomu_shah[x - 1][y + 1] = 1;
+					}
+					if (y - 1 >= 0)
+					{
+						belomu_shah[x - 1][y - 1] = 1;
+					}
+				}
+				break;
+			}
 
-	
+			case 2: //какую угрозу королю представляет конь
+			{
+				if (x + 1 < 8)
+				{
+					if (y + 2 < 8)
+					{
+						belomu_shah[x + 1][y + 2] = 1;
+					}
+					if (y - 2 >= 0)
+					{
+						belomu_shah[x + 1][y - 2] = 1;
+					}
+
+					if (x + 2 < 8)
+					{
+						if (y + 1 < 8)
+						{
+							belomu_shah[x + 2][y + 1] = 1;
+						}
+						if (y - 1 >= 0)
+						{
+							belomu_shah[x + 2][y - 1] = 1;
+						}
+					}
+				}
+				if (x - 1 >= 0)
+				{
+					if (y + 2 < 8)
+					{
+						belomu_shah[x - 1][y + 2] = 1;
+					}
+					if (y - 2 >= 0)
+					{
+						belomu_shah[x - 1][y - 2] = 1;
+					}
+
+					if (x - 2 >= 0)
+					{
+						if (y + 1 < 8)
+						{
+							belomu_shah[x - 2][y + 1] = 1;
+						}
+						if (y - 1 >= 0)
+						{
+							belomu_shah[x - 2][y - 1] = 1;
+						}
+					}
+				}
+				break;
+			}
+			case 3: //какую угрозу королю представляет  слон
+			{
+				bool f[4] = { 1, 1, 1, 1 };
+				int sum = 4;
+				int k = 0;
+				while (sum)
+				{
+					k++;
+					if (f[0])
+					{
+						if ((x - k < 0) or (y + k >= 8))
+						{
+							f[0] = false;
+						}
+						else
+						{
+							belomu_shah[x - k][y + k] = 1;
+							if (pole[x - k][y + k])
+							{
+								f[0] = false;
+							}
+						}
+					}
+					if (f[1])
+					{
+						if ((x - k < 0) or (y - k < 0))
+						{
+							f[1] = false;
+						}
+						else
+						{
+							belomu_shah[x - k][y - k] = 1;
+							if (pole[x - k][y - k])
+							{
+								f[1] = false;
+							}
+						}
+					}
+					if (f[2])
+					{
+						if ((x + k >= 8) or (y - k < 0))
+						{
+							f[2] = false;
+						}
+						else
+						{
+							belomu_shah[x + k][y - k] = 1;
+							if (pole[x + k][y - k])
+							{
+								f[2] = false;
+							}
+						}
+					}
+					if (f[3])
+					{
+						if ((x + k >= 8) or (y + k >= 8))
+						{
+							f[3] = false;
+						}
+						else
+						{
+							belomu_shah[x + k][y + k] = 1;
+							if (pole[x + k][y + k])
+							{
+								f[3] = false;
+							}
+						}
+					}
+					sum = 0;
+					for (int i = 0; i < 4; i++)
+					{
+						sum += f[i];
+					}
+				}
+				break;
+			}
+			case 4: //какую угрозу королю представляет ладья
+			{
+				for (int i = 0; i < 8; i++) {
+					if (x - i < 0) {
+						break;
+					}
+					else {
+						belomu_shah[x - i][y] = 1;
+					}
+				}
+				for (int i = 0; i < 8; i++) {
+					if (x + i > 7) {
+						break;
+					}
+					else {
+						belomu_shah[x + i][y] = 1;
+					}
+				}
+				for (int i = 0; i < 8; i++) {
+					if (y - i < 0) {
+						break;
+					}
+					else {
+						belomu_shah[x][y - i] = 1;
+					}
+				}
+				for (int i = 0; i < 8; i++) {
+					if (y + i > 7) {
+						break;
+					}
+					else {
+						belomu_shah[x][y + i] = 1;
+					}
+				}
+				break;
+			}
+			case 5:
+			{
+				bool f[4] = { 1, 1, 1, 1 };
+				int sum = 4;
+				int k = 0;
+				while (sum)
+				{
+					k++;
+					if (f[0])
+					{
+						if ((x - k < 0) or (y + k >= 8))
+						{
+							f[0] = false;
+						}
+						else
+						{
+							belomu_shah[x - k][y + k] = 1;
+							if (pole[x - k][y + k])
+							{
+								f[0] = false;
+							}
+						}
+					}
+					if (f[1])
+					{
+						if ((x - k < 0) or (y - k < 0))
+						{
+							f[1] = false;
+						}
+						else
+						{
+							belomu_shah[x - k][y - k] = 1;
+							if (pole[x - k][y - k])
+							{
+								f[1] = false;
+							}
+						}
+					}
+					if (f[2])
+					{
+						if ((x + k >= 8) or (y - k < 0))
+						{
+							f[2] = false;
+						}
+						else
+						{
+							belomu_shah[x + k][y - k] = 1;
+							if (pole[x + k][y - k])
+							{
+								f[2] = false;
+							}
+						}
+					}
+					if (f[3])
+					{
+						if ((x + k >= 8) or (y + k >= 8))
+						{
+							f[3] = false;
+						}
+						else
+						{
+							belomu_shah[x + k][y + k] = 1;
+							if (pole[x + k][y + k])
+							{
+								f[3] = false;
+							}
+						}
+					}
+					sum = 0;
+					for (int i = 0; i < 4; i++)
+					{
+						sum += f[i];
+					}
+				}
+				for (int i = 0; i < 8; i++) {
+					if (x - i < 0) {
+						break;
+					}
+					else {
+						belomu_shah[x - i][y] = 1;
+					}
+				}
+				for (int i = 0; i < 8; i++) {
+					if (x + i > 7) {
+						break;
+					}
+					else {
+						belomu_shah[x + i][y] = 1;
+					}
+				}
+				for (int i = 0; i < 8; i++) {
+					if (y - i < 0) {
+						break;
+					}
+					else {
+						belomu_shah[x][y - i] = 1;
+					}
+				}
+				for (int i = 0; i < 8; i++) {
+					if (y + i > 7) {
+						break;
+					}
+					else {
+						belomu_shah[x][y + i] = 1;
+					}
+				}
+				break;
+			}
+			case 11: // какую угрозу белому королю представляет черная peshka
+			{
+				if (x + 1 < 8)
+				{
+					if (y + 1 < 8)
+					{
+						chornomu_shah[x + 1][y + 1] = 1;
+					}
+					if (y - 1 >= 0)
+					{
+						chornomu_shah[x + 1][y - 1] = 1;
+					}
+				}
+				break;
+			}
+
+			case 12: //какую угрозу королю представляет конь
+			{
+				if (x + 1 < 8)
+				{
+					if (y + 2 < 8)
+					{
+						chornomu_shah[x + 1][y + 2] = 1;
+					}
+					if (y - 2 >= 0)
+					{
+						chornomu_shah[x + 1][y - 2] = 1;
+					}
+
+					if (x + 2 < 8)
+					{
+						if (y + 1 < 8)
+						{
+							chornomu_shah[x + 2][y + 1] = 1;
+						}
+						if (y - 1 >= 0)
+						{
+							chornomu_shah[x + 2][y - 1] = 1;
+						}
+					}
+				}
+				if (x - 1 >= 0)
+				{
+					if (y + 2 < 8)
+					{
+						chornomu_shah[x - 1][y + 2] = 1;
+					}
+					if (y - 2 >= 0)
+					{
+						chornomu_shah[x - 1][y - 2] = 1;
+					}
+
+					if (x - 2 >= 0)
+					{
+						if (y + 1 < 8)
+						{
+							chornomu_shah[x - 2][y + 1] = 1;
+						}
+						if (y - 1 >= 0)
+						{
+							chornomu_shah[x - 2][y - 1] = 1;
+						}
+					}
+				}
+				break;
+			}
+			case 13: //какую угрозу королю представляет  слон
+			{
+				bool f[4] = { 1, 1, 1, 1 };
+				int sum = 4;
+				int k = 0;
+				while (sum)
+				{
+					k++;
+					if (f[0])
+					{
+						if ((x - k < 0) or (y + k >= 8))
+						{
+							f[0] = false;
+						}
+						else
+						{
+							chornomu_shah[x - k][y + k] = 1;
+							if (pole[x - k][y + k])
+							{
+								f[0] = false;
+							}
+						}
+					}
+					if (f[1])
+					{
+						if ((x - k < 0) or (y - k < 0))
+						{
+							f[1] = false;
+						}
+						else
+						{
+							chornomu_shah[x - k][y - k] = 1;
+							if (pole[x - k][y - k])
+							{
+								f[1] = false;
+							}
+						}
+					}
+					if (f[2])
+					{
+						if ((x + k >= 8) or (y - k < 0))
+						{
+							f[2] = false;
+						}
+						else
+						{
+							chornomu_shah[x + k][y - k] = 1;
+							if (pole[x + k][y - k])
+							{
+								f[2] = false;
+							}
+						}
+					}
+					if (f[3])
+					{
+						if ((x + k >= 8) or (y + k >= 8))
+						{
+							f[3] = false;
+						}
+						else
+						{
+							chornomu_shah[x + k][y + k] = 1;
+							if (pole[x + k][y + k])
+							{
+								f[3] = false;
+							}
+						}
+					}
+					sum = 0;
+					for (int i = 0; i < 4; i++)
+					{
+						sum += f[i];
+					}
+				}
+				break;
+			}
+			case 14: //какую угрозу королю представляет ладья
+			{
+				for (int i = 0; i < 8; i++) {
+					if (x - i < 0) {
+						break;
+					}
+					else {
+						chornomu_shah[x - i][y] = 1;
+					}
+				}
+				for (int i = 0; i < 8; i++) {
+					if (x + i > 7) {
+						break;
+					}
+					else {
+						chornomu_shah[x + i][y] = 1;
+					}
+				}
+				for (int i = 0; i < 8; i++) {
+					if (y - i < 0) {
+						break;
+					}
+					else {
+						chornomu_shah[x][y - i] = 1;
+					}
+				}
+				for (int i = 0; i < 8; i++) {
+					if (y + i > 7) {
+						break;
+					}
+					else {
+						chornomu_shah[x][y + i] = 1;
+					}
+				}
+				break;
+			}
+			case 15:
+			{
+				bool f[4] = { 1, 1, 1, 1 };
+				int sum = 4;
+				int k = 0;
+				while (sum)
+				{
+					k++;
+					if (f[0])
+					{
+						if ((x - k < 0) or (y + k >= 8))
+						{
+							f[0] = false;
+						}
+						else
+						{
+							chornomu_shah[x - k][y + k] = 1;
+							if (pole[x - k][y + k])
+							{
+								f[0] = false;
+							}
+						}
+					}
+					if (f[1])
+					{
+						if ((x - k < 0) or (y - k < 0))
+						{
+							f[1] = false;
+						}
+						else
+						{
+							chornomu_shah[x - k][y - k] = 1;
+							if (pole[x - k][y - k])
+							{
+								f[1] = false;
+							}
+						}
+					}
+					if (f[2])
+					{
+						if ((x + k >= 8) or (y - k < 0))
+						{
+							f[2] = false;
+						}
+						else
+						{
+							chornomu_shah[x + k][y - k] = 1;
+							if (pole[x + k][y - k])
+							{
+								f[2] = false;
+							}
+						}
+					}
+					if (f[3])
+					{
+						if ((x + k >= 8) or (y + k >= 8))
+						{
+							f[3] = false;
+						}
+						else
+						{
+							chornomu_shah[x + k][y + k] = 1;
+							if (pole[x + k][y + k])
+							{
+								f[3] = false;
+							}
+						}
+					}
+					sum = 0;
+					for (int i = 0; i < 4; i++)
+					{
+						sum += f[i];
+					}
+				}
+				for (int i = 0; i < 8; i++) {
+					if (x - i < 0) {
+						break;
+					}
+					else {
+						chornomu_shah[x - i][y] = 1;
+					}
+				}
+				for (int i = 0; i < 8; i++) {
+					if (x + i > 7) {
+						break;
+					}
+					else {
+						chornomu_shah[x + i][y] = 1;
+					}
+				}
+				for (int i = 0; i < 8; i++) {
+					if (y - i < 0) {
+						break;
+					}
+					else {
+						chornomu_shah[x][y - i] = 1;
+					}
+				}
+				for (int i = 0; i < 8; i++) {
+					if (y + i > 7) {
+						break;
+					}
+					else {
+						chornomu_shah[x][y + i] = 1;
+					}
+				}
+				break;
+			}
+			}
+		}
+	}
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			printf("%d ", belomu_shah[i][j]);
+		}
+		printf("\n");
+ }
+
+
+
 	// вывод шахматной доски и фигур на ней
 	for (int x = 0; x <= 7; x++) {
 		for (int y = 0; y <= 7; y++) {
@@ -974,10 +1565,10 @@ int main()
 1 4
 1 5
 1 6
-0 0
+4 1
 4 2
 4 3
 4 4
-4 5
+3 5
 4 6
 */
