@@ -682,6 +682,7 @@ int main()
 		}
 	}
 	for (int r = 1; r < 21; r++) {
+		printf("Ход %d", r);
 		bool flag = true;
 		
 
@@ -2370,7 +2371,29 @@ int main()
 		}
 		printf("%d", pole[0][2]);
 	}
-
+	//начинается подсчёт очков
+	int chornie_score = 0, belie_score = 0;
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 8; j++) {
+			if(pole[i][j] != 0){
+				if (pole[i][j] < 10) {
+					chornie_score++;
+					printf("У чёрных есть фигура %c, + очко слизерину: %d\n", translate[pole[i][j]], chornie_score);
+				}
+				else {
+					belie_score++;
+					printf("У белых есть фигура %c, + очко гриффиндору: %d\n", translate[pole[i][j]], belie_score);
+				}
+			}
+		}
+	}
+	printf("Итого у чёрных: %d\nИтого у белых: %d\n", chornie_score, belie_score);
+	if (chornie_score > belie_score) printf("Победа чёрных!");
+	else {
+		if (chornie_score < belie_score) printf("Победа белых!");
+		else printf("Ничья!");
+	}
 }
 
 
@@ -2387,5 +2410,5 @@ int main()
 4 3
 4 4
 4 5
-2 6
+4 7
 */
