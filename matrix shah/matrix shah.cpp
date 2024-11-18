@@ -577,7 +577,7 @@ int main()
 
 				else if (abs(target_y - current_figure_y) == 1)
 				{
-					if ((pole[target_x][target_y] > 10) and (target_x == current_figure_x + 1))
+					if ((pole[target_x][target_y] < 10) and (target_x == current_figure_x + 1))
 					{
 						printf("Пешка могёт забрать фигуру на (%d, %d)\n", target_x, target_y);
 						valid_move = true;
@@ -968,8 +968,7 @@ int main()
 }
 
 /*
-1 1
-1 1
+5 0
 1 2
 1 3
 1 4
