@@ -2289,7 +2289,8 @@ int main()
 			}
 			if (r % 2)
 			{
-				if (chornomu_shah[niger[0]][niger[1]])
+				if (chornomu_shah[niger[0]][niger[1]] == 0)
+					flag = false;
 			}
 			else
 			{
