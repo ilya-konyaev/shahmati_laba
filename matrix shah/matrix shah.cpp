@@ -13,6 +13,9 @@ int main()
 	std::setlocale(LC_ALL, "Rus");
 	int pole[8][8] = { 0 };
 	char translate[17] = { ' ', 'П', 'К', 'С', 'Л', 'Ф', 'Ц', ' ', ' ', ' ', ' ', 'п', 'к', 'с', 'л', 'ф', 'ц' };
+	int belomu_shah[8][8] = { 0 }, chornomu_shah[8][8] = { 0 };
+
+
 
 	printf("Введите координаты сначала белые x потом y в таком порядке, затем чёрные в том же порядке: \n пешка \n конь \n слон \n ладья \n ферзь \n король: \n");
 	for (int color = 0; color <= 10; color += 10)
@@ -37,6 +40,7 @@ int main()
 		}
 	}
 
+	
 	// вывод шахматной доски и фигур на ней
 	for (int x = 0; x <= 7; x++) {
 		for (int y = 0; y <= 7; y++) {
@@ -359,6 +363,8 @@ int main()
 				// Обновляем состояние доски: перемещаем ладью
 				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
 				pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+
+				
 			}
 			else {
 				printf("Несоответствующий ход. Введите новые координаты:\n");
@@ -532,15 +538,15 @@ int main()
 		*/
 		while (!valid_move)
 		{
-			if (target_y - current_figure_y >= -1)
+			if (target_x - current_figure_x >= 1) // напавление хода
 			{
-				if (target_x == current_figure_x)
+				if (target_y == current_figure_y) // 
 				{
-					if (target_y - current_figure_y == -1)
+					if (target_x - current_figure_x == 1)
 					{
-						if (pole[current_figure_x][current_figure_y - 1] == 0)
+						if (pole[current_figure_x+1][current_figure_y] == 0)
 						{
-							printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y - 1);
+							printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x + 1, current_figure_y);
 							valid_move = true;
 						}
 						else
@@ -549,11 +555,11 @@ int main()
 							scanf_s("%d %d", &target_x, &target_y);
 						}
 					}
-					else if ((target_y - current_figure_y == -2) and (current_figure_y == 6))
+					else if ((target_x - current_figure_x == 2) and (current_figure_x == 1))
 					{
-						if (pole[current_figure_x][current_figure_y - 2] == 0)
+						if (pole[current_figure_x + 2][current_figure_y] == 0)
 						{
-							printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y - 2);
+							printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x + 2, current_figure_y);
 							valid_move = true;
 						}
 						else
@@ -569,9 +575,9 @@ int main()
 					}
 				}
 
-				else if (abs(target_x - current_figure_x) == 1)
+				else if (abs(target_y - current_figure_y) == 1)
 				{
-					if ((pole[target_x][target_y] <= 10) and (pole[target_x][target_y] > 0) and (target_y == current_figure_y - 1))
+					if ((pole[target_x][target_y] > 10) and (target_x == current_figure_x + 1))
 					{
 						printf("Пешка могёт забрать фигуру на (%d, %d)\n", target_x, target_y);
 						valid_move = true;
@@ -589,10 +595,11 @@ int main()
 				scanf_s("%d %d", &target_x, &target_y);
 			}
 		}
-		pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
-		pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
-
-		break;
+		if (valid_move) {
+			pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
+			pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+			break;
+		}
 	}
 	case 12: {
 		// белый конь
