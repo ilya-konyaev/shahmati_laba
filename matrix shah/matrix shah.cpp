@@ -2,10 +2,10 @@
 #include <iostream>
 
 /*
-	Черные | 01 02 03 04 05 06
-			  П  К  С  Л  Ф  Ц
-	Белые  | 11 12 13 14 15 16
-			  п  к  с  л  ф  ц
+	Р§РµСЂРЅС‹Рµ | 01 02 03 04 05 06
+			  Рџ  Рљ  РЎ  Р›  Р¤  Р¦
+	Р‘РµР»С‹Рµ  | 11 12 13 14 15 16
+			  Рї  Рє  СЃ  Р»  С„  С†
 */
 
 int main()
@@ -13,14 +13,14 @@ int main()
 
 	std::setlocale(LC_ALL, "Rus");
 	int pole[8][8] = { 0 };
-	char translate[17] = { ' ', 'П', 'К', 'С', 'Л', 'Ф', 'Ц', ' ', ' ', ' ', ' ', 'п', 'к', 'с', 'л', 'ф', 'ц' };
+	char translate[17] = { ' ', 'Рџ', 'Рљ', 'РЎ', 'Р›', 'Р¤', 'Р¦', ' ', ' ', ' ', ' ', 'Рї', 'Рє', 'СЃ', 'Р»', 'С„', 'С†' };
 	int belomu_shah[8][8] = { 0 }, chornomu_shah[8][8] = { 0 };
 	int copy_pole[8][8] = { 0 };
 	int copy_belomu_shah[8][8] = { 0 };
 	int copy_chornomu_shah[8][8] = { 0 };
 	int niger[2] = { -1, -1 }, rasist[2] = { -1, -1 };
 
-	printf("Введите координаты сначала белые x потом y в таком порядке, затем чёрные в том же порядке: \n пешка \n конь \n слон \n ладья \n ферзь \n король: \n");
+	printf("Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ СЃРЅР°С‡Р°Р»Р° Р±РµР»С‹Рµ x РїРѕС‚РѕРј y РІ С‚Р°РєРѕРј РїРѕСЂСЏРґРєРµ, Р·Р°С‚РµРј С‡С‘СЂРЅС‹Рµ РІ С‚РѕРј Р¶Рµ РїРѕСЂСЏРґРєРµ: \n РїРµС€РєР° \n РєРѕРЅСЊ \n СЃР»РѕРЅ \n Р»Р°РґСЊСЏ \n С„РµСЂР·СЊ \n РєРѕСЂРѕР»СЊ: \n");
 	for (int color = 0; color <= 10; color += 10)
 	{
 		for (int figure = 1; figure <= 6; figure++)
@@ -29,11 +29,11 @@ int main()
 			{
 				int x, y;
 				scanf_s("%d %d", &x, &y);
-				// проверить что не лежит уже по этим координатам
-				// если лежит то ошибка, иначе кладем в массив
+				// РїСЂРѕРІРµСЂРёС‚СЊ С‡С‚Рѕ РЅРµ Р»РµР¶РёС‚ СѓР¶Рµ РїРѕ СЌС‚РёРј РєРѕРѕСЂРґРёРЅР°С‚Р°Рј
+				// РµСЃР»Рё Р»РµР¶РёС‚ С‚Рѕ РѕС€РёР±РєР°, РёРЅР°С‡Рµ РєР»Р°РґРµРј РІ РјР°СЃСЃРёРІ
 
 				if (pole[x][y] != 0) {
-					printf("Клетка уже зянята\n");
+					printf("РљР»РµС‚РєР° СѓР¶Рµ Р·СЏРЅСЏС‚Р°\n");
 				}
 				else {
 					pole[x][y] = figure + color;
@@ -42,14 +42,14 @@ int main()
 			}
 		}
 	}
-	//изменение матриц белый шах чёрный шах
+	//РёР·РјРµРЅРµРЅРёРµ РјР°С‚СЂРёС† Р±РµР»С‹Р№ С€Р°С… С‡С‘СЂРЅС‹Р№ С€Р°С…
 	for (int x = 0; x < 8; x++)
 	{
 		for (int y = 0; y < 8; y++)
 		{
 			switch (pole[x][y])
 			{
-			case 1: // какую угрозу королю представляет peshka
+			case 1: // РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ peshka
 			{
 				if (x - 1 >= 0)
 				{
@@ -65,7 +65,7 @@ int main()
 				break;
 			}
 
-			case 2: //какую угрозу королю представляет конь
+			case 2: //РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ РєРѕРЅСЊ
 			{
 				if (x + 1 < 8)
 				{
@@ -115,7 +115,7 @@ int main()
 				}
 				break;
 			}
-			case 3: //какую угрозу королю представляет  слон
+			case 3: //РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚  СЃР»РѕРЅ
 			{
 				bool f[4] = { 1, 1, 1, 1 };
 				int sum = 4;
@@ -191,7 +191,7 @@ int main()
 				}
 				break;
 			}
-			case 4: //какую угрозу королю представляет ладья
+			case 4: //РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ Р»Р°РґСЊСЏ
 			{
 				for (int i = 1; i < 8; i++) {
 					if (x - i < 0) {
@@ -364,7 +364,7 @@ int main()
 				niger[1] = y;
 				break;
 			}
-			case 11: // какую угрозу белому королю представляет черная peshka
+			case 11: // РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ Р±РµР»РѕРјСѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ С‡РµСЂРЅР°СЏ peshka
 			{
 				if (x + 1 < 8)
 				{
@@ -380,7 +380,7 @@ int main()
 				break;
 			}
 
-			case 12: //какую угрозу королю представляет конь
+			case 12: //РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ РєРѕРЅСЊ
 			{
 				if (x + 1 < 8)
 				{
@@ -430,7 +430,7 @@ int main()
 				}
 				break;
 			}
-			case 13: //какую угрозу королю представляет  слон
+			case 13: //РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚  СЃР»РѕРЅ
 			{
 				bool f[4] = { 1, 1, 1, 1 };
 				int sum = 4;
@@ -506,7 +506,7 @@ int main()
 				}
 				break;
 			}
-			case 14: //какую угрозу королю представляет ладья
+			case 14: //РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ Р»Р°РґСЊСЏ
 			{
 				for (int i = 1; i < 8; i++) {
 					if (x - i < 0) {
@@ -684,10 +684,10 @@ int main()
 	}
 
 
-	// вывод шахматной доски и фигур на ней
+	// РІС‹РІРѕРґ С€Р°С…РјР°С‚РЅРѕР№ РґРѕСЃРєРё Рё С„РёРіСѓСЂ РЅР° РЅРµР№
 	for (int x = 0; x <= 7; x++) {
 		for (int y = 0; y <= 7; y++) {
-			if (pole[x][y] == 0) { // Пусто
+			if (pole[x][y] == 0) { // РџСѓСЃС‚Рѕ
 				if ((x + y) % 2 == 0) {
 					printf("#");
 				}
@@ -695,7 +695,7 @@ int main()
 					printf(" ");
 				}
 			}
-			else { // Есть фигура
+			else { // Р•СЃС‚СЊ С„РёРіСѓСЂР°
 				printf("%c", translate[pole[x][y]]);
 			}
 		}
@@ -704,7 +704,7 @@ int main()
 
 
 	for (int r = 1; r < 21; r++) {
-		printf("Ход %d\n", r);
+		printf("РҐРѕРґ %d\n", r);
 		bool flag = true;
 
 
@@ -735,27 +735,27 @@ int main()
 			}
 			int current_figure_x, current_figure_y;
 			int hodyat_belie = 1;
-			while (true) { //проверка условия выбора фигуры(выбрали пустую либо ввели некорректные )
-				printf("Введите ячейку фигуры(x, y) которая должна сходить\n");
+			while (true) { //РїСЂРѕРІРµСЂРєР° СѓСЃР»РѕРІРёСЏ РІС‹Р±РѕСЂР° С„РёРіСѓСЂС‹(РІС‹Р±СЂР°Р»Рё РїСѓСЃС‚СѓСЋ Р»РёР±Рѕ РІРІРµР»Рё РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ )
+				printf("Р’РІРµРґРёС‚Рµ СЏС‡РµР№РєСѓ С„РёРіСѓСЂС‹(x, y) РєРѕС‚РѕСЂР°СЏ РґРѕР»Р¶РЅР° СЃС…РѕРґРёС‚СЊ\n");
 				scanf_s("%d %d", &current_figure_x, &current_figure_y);
 				if ((current_figure_x > 7) or (current_figure_y > 7) or (current_figure_x < 0) or (current_figure_y < 0)) {
-					printf("введена некорректная координата");
+					printf("РІРІРµРґРµРЅР° РЅРµРєРѕСЂСЂРµРєС‚РЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р°");
 				}
 				else {
 					if (pole[current_figure_x][current_figure_y] == 0) {
-						printf("выбрана пустая клетка");
+						printf("РІС‹Р±СЂР°РЅР° РїСѓСЃС‚Р°СЏ РєР»РµС‚РєР°");
 					}
 					else {
 						if (r % 2 == 1) {
 							if (pole[current_figure_x][current_figure_y] > 10)
-								printf("Ходят чёрные, выберите чёрную фигуру!!!\n");
+								printf("РҐРѕРґСЏС‚ С‡С‘СЂРЅС‹Рµ, РІС‹Р±РµСЂРёС‚Рµ С‡С‘СЂРЅСѓСЋ С„РёРіСѓСЂСѓ!!!\n");
 							else
 								break;
 						}
 
 						else {
 							if (pole[current_figure_x][current_figure_y] < 10)
-								printf("Ходят белые, выберите белую фигуру!!!\n");
+								printf("РҐРѕРґСЏС‚ Р±РµР»С‹Рµ, РІС‹Р±РµСЂРёС‚Рµ Р±РµР»СѓСЋ С„РёРіСѓСЂСѓ!!!\n");
 							else
 								break;
 						}
@@ -765,27 +765,27 @@ int main()
 
 			int ocurrent_figure = pole[current_figure_x][current_figure_y];
 
-			printf("ходит фигура: %c\n", translate[ocurrent_figure]);
+			printf("С…РѕРґРёС‚ С„РёРіСѓСЂР°: %c\n", translate[ocurrent_figure]);
 
 
 			int target_x, target_y;
 			bool rubit;
 
-			//проверка правильности введения координаты на которую должна сходить фигура
+			//РїСЂРѕРІРµСЂРєР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚Рё РІРІРµРґРµРЅРёСЏ РєРѕРѕСЂРґРёРЅР°С‚С‹ РЅР° РєРѕС‚РѕСЂСѓСЋ РґРѕР»Р¶РЅР° СЃС…РѕРґРёС‚СЊ С„РёРіСѓСЂР°
 			while (true) {
-				printf("введите куда должна сходить фигура (координаты x, y)\n");
+				printf("РІРІРµРґРёС‚Рµ РєСѓРґР° РґРѕР»Р¶РЅР° СЃС…РѕРґРёС‚СЊ С„РёРіСѓСЂР° (РєРѕРѕСЂРґРёРЅР°С‚С‹ x, y)\n");
 				scanf_s("%d %d", &target_x, &target_y);
 				if ((target_x > 7) or (target_y > 7) or (target_x < 0) or (target_y < 0))
-					printf("Введена некорректная координата\n");
+					printf("Р’РІРµРґРµРЅР° РЅРµРєРѕСЂСЂРµРєС‚РЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р°\n");
 				else
 				{
 					bool rubit = pole[target_x][target_y] != 0;
 					if (((ocurrent_figure / 10) == (pole[target_x][target_y] / 10)) and rubit) {
-						printf("фигура ходит на фигуру своего цвета %c %c\n", translate[ocurrent_figure], translate[pole[target_x][target_y]]);
+						printf("С„РёРіСѓСЂР° С…РѕРґРёС‚ РЅР° С„РёРіСѓСЂСѓ СЃРІРѕРµРіРѕ С†РІРµС‚Р° %c %c\n", translate[ocurrent_figure], translate[pole[target_x][target_y]]);
 					}
 					else {
 						if ((target_x == niger[0] and target_y == niger[1]) or (target_x == rasist[0] and target_y == rasist[1]))
-							printf("Вы пытаетесь срубить короля!!!!\n");
+							printf("Р’С‹ РїС‹С‚Р°РµС‚РµСЃСЊ СЃСЂСѓР±РёС‚СЊ РєРѕСЂРѕР»СЏ!!!!\n");
 						else break;
 					}
 				}
@@ -795,14 +795,14 @@ int main()
 			case 01: {
 				bool valid_move = false;
 				/*
-				черная пешка
-				ходит вверх по доске, потому что доска повёрнута со стороны чёрных ==>
-				==> координаты y уменьшаются
-				если белая пешка сделала ход на 2 клетки вперёд,
-				то можно срубить подиагонали на
-				линию y сходившей пешки
-				если пешка находится на линнии игриков
-				равной 2, то можно сходить на 2 клетки вперёд
+				С‡РµСЂРЅР°СЏ РїРµС€РєР°
+				С…РѕРґРёС‚ РІРІРµСЂС… РїРѕ РґРѕСЃРєРµ, РїРѕС‚РѕРјСѓ С‡С‚Рѕ РґРѕСЃРєР° РїРѕРІС‘СЂРЅСѓС‚Р° СЃРѕ СЃС‚РѕСЂРѕРЅС‹ С‡С‘СЂРЅС‹С… ==>
+				==> РєРѕРѕСЂРґРёРЅР°С‚С‹ y СѓРјРµРЅСЊС€Р°СЋС‚СЃСЏ
+				РµСЃР»Рё Р±РµР»Р°СЏ РїРµС€РєР° СЃРґРµР»Р°Р»Р° С…РѕРґ РЅР° 2 РєР»РµС‚РєРё РІРїРµСЂС‘Рґ,
+				С‚Рѕ РјРѕР¶РЅРѕ СЃСЂСѓР±РёС‚СЊ РїРѕРґРёР°РіРѕРЅР°Р»Рё РЅР°
+				Р»РёРЅРёСЋ y СЃС…РѕРґРёРІС€РµР№ РїРµС€РєРё
+				РµСЃР»Рё РїРµС€РєР° РЅР°С…РѕРґРёС‚СЃСЏ РЅР° Р»РёРЅРЅРёРё РёРіСЂРёРєРѕРІ
+				СЂР°РІРЅРѕР№ 2, С‚Рѕ РјРѕР¶РЅРѕ СЃС…РѕРґРёС‚СЊ РЅР° 2 РєР»РµС‚РєРё РІРїРµСЂС‘Рґ
 				*/
 				while (!valid_move)
 				{
@@ -814,12 +814,12 @@ int main()
 							{
 								if (pole[target_x][target_y] == 0)
 								{
-									printf("Мозя сходить на клеточку (%d, %d).\n", target_x, target_y);
+									printf("РњРѕР·СЏ СЃС…РѕРґРёС‚СЊ РЅР° РєР»РµС‚РѕС‡РєСѓ (%d, %d).\n", target_x, target_y);
 									valid_move = true;
 								}
 								else
 								{
-									printf("Низя ходить в занятую клеточку.\n");
+									printf("РќРёР·СЏ С…РѕРґРёС‚СЊ РІ Р·Р°РЅСЏС‚СѓСЋ РєР»РµС‚РѕС‡РєСѓ.\n");
 									scanf_s("%d %d", &target_x, &target_y);
 								}
 							}
@@ -827,18 +827,18 @@ int main()
 							{
 								if (pole[current_figure_x + 2][current_figure_y] == 0)
 								{
-									printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x, current_figure_y + 2);
+									printf("РњРѕР·СЏ СЃС…РѕРґРёС‚СЊ РЅР° РєР»РµС‚РѕС‡РєСѓ (%d, %d).\n", current_figure_x, current_figure_y + 2);
 									valid_move = true;
 								}
 								else
 								{
-									printf("Низя ходить в занятую клеточку.\n");
+									printf("РќРёР·СЏ С…РѕРґРёС‚СЊ РІ Р·Р°РЅСЏС‚СѓСЋ РєР»РµС‚РѕС‡РєСѓ.\n");
 									scanf_s("%d %d", &target_x, &target_y);
 								}
 							}
 							else
 							{
-								printf("Так пешка не ходит\n");
+								printf("РўР°Рє РїРµС€РєР° РЅРµ С…РѕРґРёС‚\n");
 								scanf_s("%d %d", &target_x, &target_y);
 							}
 						}
@@ -847,37 +847,37 @@ int main()
 						{
 							if ((pole[target_x][target_y] > 10) and ((target_x + 1) == current_figure_x))
 							{
-								printf("Пешка могёт забрать фигуру на (%d, %d)\n", target_x, target_y);
+								printf("РџРµС€РєР° РјРѕРіС‘С‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", target_x, target_y);
 								valid_move = true;
 							}
 							else
 							{
-								printf("Туды рубыть не положено.\n");
+								printf("РўСѓРґС‹ СЂСѓР±С‹С‚СЊ РЅРµ РїРѕР»РѕР¶РµРЅРѕ.\n");
 								scanf_s("%d %d", &target_x, &target_y);
 							}
 						}
 					}
 					else
 					{
-						printf("Пешка так не ходит.\n");
+						printf("РџРµС€РєР° С‚Р°Рє РЅРµ С…РѕРґРёС‚.\n");
 						scanf_s("%d %d", &target_x, &target_y);
 					}
 				}
-				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
-				pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // РџРµСЂРµРјРµС‰Р°РµРј С„РёРіСѓСЂСѓ
+				pole[current_figure_x][current_figure_y] = 0; // РћС‡РёС‰Р°РµРј СЃС‚Р°СЂСѓСЋ РїРѕР·РёС†РёСЋ
 
 				break;
 			}
 			case 02:
 			{
 				/*
-				конь
+				РєРѕРЅСЊ
 
-				нужно проверить не вышел ли конь за поле
-				координаты, на которых стоял конь нужно обнулить
-				координаты на которые сходил нужно перезаписать с нуля или с фигуры на значение коня, то есть 02
+				РЅСѓР¶РЅРѕ РїСЂРѕРІРµСЂРёС‚СЊ РЅРµ РІС‹С€РµР» Р»Рё РєРѕРЅСЊ Р·Р° РїРѕР»Рµ
+				РєРѕРѕСЂРґРёРЅР°С‚С‹, РЅР° РєРѕС‚РѕСЂС‹С… СЃС‚РѕСЏР» РєРѕРЅСЊ РЅСѓР¶РЅРѕ РѕР±РЅСѓР»РёС‚СЊ
+				РєРѕРѕСЂРґРёРЅР°С‚С‹ РЅР° РєРѕС‚РѕСЂС‹Рµ СЃС…РѕРґРёР» РЅСѓР¶РЅРѕ РїРµСЂРµР·Р°РїРёСЃР°С‚СЊ СЃ РЅСѓР»СЏ РёР»Рё СЃ С„РёРіСѓСЂС‹ РЅР° Р·РЅР°С‡РµРЅРёРµ РєРѕРЅСЏ, С‚Рѕ РµСЃС‚СЊ 02
 				*/
-				// может ли конь сделать такой ход
+				// РјРѕР¶РµС‚ Р»Рё РєРѕРЅСЊ СЃРґРµР»Р°С‚СЊ С‚Р°РєРѕР№ С…РѕРґ
 				int res_1, res_2;
 				while (true) {
 					res_1 = abs(current_figure_x - target_x);
@@ -885,11 +885,11 @@ int main()
 					if (((res_1 == 2) and (res_2 == 1)) or ((res_1 == 1) and (res_2 == 2))) {
 						pole[target_x][target_y] = ocurrent_figure;
 						pole[current_figure_x][current_figure_y] = 0;
-						printf("%c ходит на клетку %d %d\n", translate[ocurrent_figure], target_x, target_y);
+						printf("%c С…РѕРґРёС‚ РЅР° РєР»РµС‚РєСѓ %d %d\n", translate[ocurrent_figure], target_x, target_y);
 						break;
 					}
 					else {
-						printf("%c не может сходить на клетку %d %d\n", translate[ocurrent_figure], target_x, target_y);
+						printf("%c РЅРµ РјРѕР¶РµС‚ СЃС…РѕРґРёС‚СЊ РЅР° РєР»РµС‚РєСѓ %d %d\n", translate[ocurrent_figure], target_x, target_y);
 						scanf_s("%d %d", &target_x, &target_y);
 					}
 				}
@@ -897,11 +897,11 @@ int main()
 			}
 			case 03:
 			{
-				// чёрный слон
+				// С‡С‘СЂРЅС‹Р№ СЃР»РѕРЅ
 				while (true) {
 					if ((abs(target_x - current_figure_x) != abs(target_y - current_figure_y)) or (target_x - current_figure_x == 0))
 					{
-						printf("Введена некорректная координата\nВведите новую координату\n");
+						printf("Р’РІРµРґРµРЅР° РЅРµРєРѕСЂСЂРµРєС‚РЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р°\nР’РІРµРґРёС‚Рµ РЅРѕРІСѓСЋ РєРѕРѕСЂРґРёРЅР°С‚Сѓ\n");
 						scanf_s("%d %d", &target_x, &target_y);
 					}
 					else
@@ -919,20 +919,20 @@ int main()
 									{
 										if ((current_figure_x + i * qx == target_x) and (current_figure_y + i * qy == target_y))
 										{
-											printf("Слон может забрать фигуру на (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
+											printf("РЎР»РѕРЅ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
 											break;
 										}
 										else
 										{
-											printf("А клеточка то, таки уже занята.\n");
-											printf("Введена некорректная координата\nВведите новую координату\n");
+											printf("Рђ РєР»РµС‚РѕС‡РєР° С‚Рѕ, С‚Р°РєРё СѓР¶Рµ Р·Р°РЅСЏС‚Р°.\n");
+											printf("Р’РІРµРґРµРЅР° РЅРµРєРѕСЂСЂРµРєС‚РЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р°\nР’РІРµРґРёС‚Рµ РЅРѕРІСѓСЋ РєРѕРѕСЂРґРёРЅР°С‚Сѓ\n");
 											scanf_s("%d %d", &target_x, &target_y);
 										}
 									}
 									else
 									{
-										printf("Наш слон своих не рубит.\n");
-										printf("Рубите своих координата\nВведите новую координату\n");
+										printf("РќР°С€ СЃР»РѕРЅ СЃРІРѕРёС… РЅРµ СЂСѓР±РёС‚.\n");
+										printf("Р СѓР±РёС‚Рµ СЃРІРѕРёС… РєРѕРѕСЂРґРёРЅР°С‚Р°\nР’РІРµРґРёС‚Рµ РЅРѕРІСѓСЋ РєРѕРѕСЂРґРёРЅР°С‚Сѓ\n");
 										scanf_s("%d %d", &target_x, &target_y);
 									}
 								}
@@ -940,7 +940,7 @@ int main()
 								{
 									if ((current_figure_x + i * qx == target_x) and (current_figure_y + i * qy == target_y))
 									{
-										printf("Слон может сходить на (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
+										printf("РЎР»РѕРЅ РјРѕР¶РµС‚ СЃС…РѕРґРёС‚СЊ РЅР° (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
 										break;
 									}
 								}
@@ -949,248 +949,248 @@ int main()
 						break;
 					}
 				}
-				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
-				pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // РџРµСЂРµРјРµС‰Р°РµРј С„РёРіСѓСЂСѓ
+				pole[current_figure_x][current_figure_y] = 0; // РћС‡РёС‰Р°РµРј СЃС‚Р°СЂСѓСЋ РїРѕР·РёС†РёСЋ
 
 				break;
 			}
 			case 04: {
-				// Чёрная ладья
-				int valid_move = 0; // Флаг для проверки корректности введенных координат
+				// Р§С‘СЂРЅР°СЏ Р»Р°РґСЊСЏ
+				int valid_move = 0; // Р¤Р»Р°Рі РґР»СЏ РїСЂРѕРІРµСЂРєРё РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РІРІРµРґРµРЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚
 
 				while (!valid_move) {
-					if (target_x == current_figure_x) { // Движение по вертикали
-						// Проверяем все ходы вверх
+					if (target_x == current_figure_x) { // Р”РІРёР¶РµРЅРёРµ РїРѕ РІРµСЂС‚РёРєР°Р»Рё
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІРІРµСЂС…
 						for (int i = current_figure_y + 1; i <= 7; ++i) {
 							if (pole[current_figure_x][i] != 0) {
-								if (pole[current_figure_x][i] / 10 == 0) { // Своя фигура
-									break; // Остановка перед своей фигурой
+								if (pole[current_figure_x][i] / 10 == 0) { // РЎРІРѕСЏ С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ С„РёРіСѓСЂС‹
 									if (i == target_y) {
 										valid_move = 1;
-										printf("Ладья может забрать фигуру на (%d, %d)\n", current_figure_x, i);
+										printf("Р›Р°РґСЊСЏ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", current_figure_x, i);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (i == target_y) { // Если мы дошли до нужной цели
+							if (i == target_y) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
-						// Проверяем все ходы вниз
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІРЅРёР·
 						for (int i = current_figure_y - 1; i >= 0; --i) {
 							if (pole[current_figure_x][i] != 0) {
-								if (pole[current_figure_x][i] / 10 == 0) { // Своя фигура
-									break; // Остановка перед своей фигурой
+								if (pole[current_figure_x][i] / 10 == 0) { // РЎРІРѕСЏ С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ С„РёРіСѓСЂС‹
 									if (i == target_y) {
 										valid_move = 1;
-										printf("Ладья может забрать фигуру на (%d, %d)\n", current_figure_x, i);
+										printf("Р›Р°РґСЊСЏ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", current_figure_x, i);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (i == target_y) { // Если мы дошли до нужной цели
+							if (i == target_y) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
 					}
-					else if (target_y == current_figure_y) { // Движение по горизонтали
-						// Проверяем все ходы вправо
+					else if (target_y == current_figure_y) { // Р”РІРёР¶РµРЅРёРµ РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІРїСЂР°РІРѕ
 						for (int j = current_figure_x + 1; j <= 7; ++j) {
 							if (pole[j][current_figure_y] != 0) {
-								if (pole[j][current_figure_y] / 10 == 0) { // Своя фигура
-									break; // Остановка перед своей фигурой
+								if (pole[j][current_figure_y] / 10 == 0) { // РЎРІРѕСЏ С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ С„РёРіСѓСЂС‹
 									if (j == target_x) {
 										valid_move = 1;
-										printf("Ладья может забрать фигуру на (%d, %d)\n", j, current_figure_y);
+										printf("Р›Р°РґСЊСЏ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", j, current_figure_y);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (j == target_x) { // Если мы дошли до нужной цели
+							if (j == target_x) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
 
-						// Проверяем все ходы влево
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІР»РµРІРѕ
 						for (int j = current_figure_x - 1; j >= 0; --j) {
 							if (pole[j][current_figure_y] != 0) {
-								if (pole[j][current_figure_y] / 10 == 0) { // Своя фигура
-									break; // Остановка перед своей фигурой
+								if (pole[j][current_figure_y] / 10 == 0) { // РЎРІРѕСЏ С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ С„РёРіСѓСЂС‹
 									if (j == target_x) {
 										valid_move = 1;
-										printf("Ладья может забрать фигуру на (%d, %d)\n", j, current_figure_y);
+										printf("Р›Р°РґСЊСЏ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", j, current_figure_y);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (j == target_x) { // Если мы дошли до нужной цели
+							if (j == target_x) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
 					}
 					else {
-						printf("Ладья может двигаться только по вертикали или горизонтали.\n");
+						printf("Р›Р°РґСЊСЏ РјРѕР¶РµС‚ РґРІРёРіР°С‚СЊСЃСЏ С‚РѕР»СЊРєРѕ РїРѕ РІРµСЂС‚РёРєР°Р»Рё РёР»Рё РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё.\n");
 					}
 
 					if (valid_move) {
-						// Обновляем состояние доски: перемещаем ладью
-						pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
-						pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+						// РћР±РЅРѕРІР»СЏРµРј СЃРѕСЃС‚РѕСЏРЅРёРµ РґРѕСЃРєРё: РїРµСЂРµРјРµС‰Р°РµРј Р»Р°РґСЊСЋ
+						pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // РџРµСЂРµРјРµС‰Р°РµРј С„РёРіСѓСЂСѓ
+						pole[current_figure_x][current_figure_y] = 0; // РћС‡РёС‰Р°РµРј СЃС‚Р°СЂСѓСЋ РїРѕР·РёС†РёСЋ
 
 
 					}
 					else {
-						printf("Несоответствующий ход. Введите новые координаты:\n");
+						printf("РќРµСЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ С…РѕРґ. Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹:\n");
 						scanf_s("%d%d", &target_x, &target_y);
 					}
 				}
 				break;
 			}
 			case 05: {
-				int valid_move = 0; // Флаг для проверки корректности введенных координат
+				int valid_move = 0; // Р¤Р»Р°Рі РґР»СЏ РїСЂРѕРІРµСЂРєРё РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РІРІРµРґРµРЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚
 
 				while (!valid_move) {
-					// Проверка движения по вертикали и горизонтали (как у ладьи)
-					if (target_x == current_figure_x) { // Движение по вертикали
-						// Проверяем все ходы вверх
+					// РџСЂРѕРІРµСЂРєР° РґРІРёР¶РµРЅРёСЏ РїРѕ РІРµСЂС‚РёРєР°Р»Рё Рё РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё (РєР°Рє Сѓ Р»Р°РґСЊРё)
+					if (target_x == current_figure_x) { // Р”РІРёР¶РµРЅРёРµ РїРѕ РІРµСЂС‚РёРєР°Р»Рё
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІРІРµСЂС…
 						for (int i = current_figure_y + 1; i <= 7; ++i) {
 							if (pole[current_figure_x][i] != 0) {
-								if (pole[current_figure_x][i] / 10 == 0) { // Своя фигура
-									break; // Остановка перед своей фигурой
+								if (pole[current_figure_x][i] / 10 == 0) { // РЎРІРѕСЏ С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ С„РёРіСѓСЂС‹
 									if (i == target_y) {
 										valid_move = 1;
-										printf("Ферзь может забрать фигуру на (%d, %d)\n", current_figure_x, i);
+										printf("Р¤РµСЂР·СЊ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", current_figure_x, i);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (i == target_y) { // Если мы дошли до нужной цели
+							if (i == target_y) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
-						// Проверяем все ходы вниз
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІРЅРёР·
 						for (int i = current_figure_y - 1; i >= 0; --i) {
 							if (pole[current_figure_x][i] != 0) {
-								if (pole[current_figure_x][i] / 10 == 0) { // Своя фигура
-									break; // Остановка перед своей фигурой
+								if (pole[current_figure_x][i] / 10 == 0) { // РЎРІРѕСЏ С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ С„РёРіСѓСЂС‹
 									if (i == target_y) {
 										valid_move = 1;
-										printf("Ферзь может забрать фигуру на (%d, %d)\n", current_figure_x, i);
+										printf("Р¤РµСЂР·СЊ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", current_figure_x, i);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (i == target_y) { // Если мы дошли до нужной цели
+							if (i == target_y) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
 					}
-					else if (target_y == current_figure_y) { // Движение по горизонтали
-						// Проверяем все ходы вправо
+					else if (target_y == current_figure_y) { // Р”РІРёР¶РµРЅРёРµ РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІРїСЂР°РІРѕ
 						for (int j = current_figure_x + 1; j <= 7; ++j) {
 							if (pole[j][current_figure_y] != 0) {
-								if (pole[j][current_figure_y] / 10 == 0) { // Своя фигура
-									break; // Остановка перед своей фигурой
+								if (pole[j][current_figure_y] / 10 == 0) { // РЎРІРѕСЏ С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ С„РёРіСѓСЂС‹
 									if (j == target_x) {
 										valid_move = 1;
-										printf("Ферзь может забрать фигуру на (%d, %d)\n", j, current_figure_y);
+										printf("Р¤РµСЂР·СЊ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", j, current_figure_y);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (j == target_x) { // Если мы дошли до нужной цели
+							if (j == target_x) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
 
-						// Проверяем все ходы влево
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІР»РµРІРѕ
 						for (int j = current_figure_x - 1; j >= 0; --j) {
 							if (pole[j][current_figure_y] != 0) {
-								if (pole[j][current_figure_y] / 10 == 0) { // Своя фигура
-									break; // Остановка перед своей фигурой
+								if (pole[j][current_figure_y] / 10 == 0) { // РЎРІРѕСЏ С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ С„РёРіСѓСЂС‹
 									if (j == target_x) {
 										valid_move = 1;
-										printf("Ферзь может забрать фигуру на (%d, %d)\n", j, current_figure_y);
+										printf("Р¤РµСЂР·СЊ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", j, current_figure_y);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (j == target_x) { // Если мы дошли до нужной цели
+							if (j == target_x) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
 					}
-					// Проверка движения по диагонали (как у слона)
-					else if (abs(target_x - current_figure_x) == abs(target_y - current_figure_y)) { // Движение по диагонали
+					// РџСЂРѕРІРµСЂРєР° РґРІРёР¶РµРЅРёСЏ РїРѕ РґРёР°РіРѕРЅР°Р»Рё (РєР°Рє Сѓ СЃР»РѕРЅР°)
+					else if (abs(target_x - current_figure_x) == abs(target_y - current_figure_y)) { // Р”РІРёР¶РµРЅРёРµ РїРѕ РґРёР°РіРѕРЅР°Р»Рё
 						int qx = (target_x - current_figure_x) / abs(target_x - current_figure_x);
 						int qy = (target_y - current_figure_y) / abs(target_y - current_figure_y);
 						for (int i = 1; i < 8; ++i) {
 							int new_x = current_figure_x + i * qx;
 							int new_y = current_figure_y + i * qy;
 							if (new_x < 0 || new_x > 7 || new_y < 0 || new_y > 7)
-								break; // Останавливаемся, если за пределами доски
+								break; // РћСЃС‚Р°РЅР°РІР»РёРІР°РµРјСЃСЏ, РµСЃР»Рё Р·Р° РїСЂРµРґРµР»Р°РјРё РґРѕСЃРєРё
 							if (pole[new_x][new_y] != 0) {
-								if (pole[new_x][new_y] / 10 == 0) { // Своя фигура
-									break; // Остановка перед своей фигурой
+								if (pole[new_x][new_y] / 10 == 0) { // РЎРІРѕСЏ С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ С„РёРіСѓСЂС‹
 									if (new_x == target_x && new_y == target_y) {
 										valid_move = 1;
-										printf("Ферзь может забрать фигуру на (%d, %d)\n", new_x, new_y);
+										printf("Р¤РµСЂР·СЊ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", new_x, new_y);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (new_x == target_x && new_y == target_y) { // Если дошли до нужной цели
+							if (new_x == target_x && new_y == target_y) { // Р•СЃР»Рё РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
 					}
 					else {
-						printf("Ферзь может двигаться только по вертикали, горизонтали или диагонали.\n");
+						printf("Р¤РµСЂР·СЊ РјРѕР¶РµС‚ РґРІРёРіР°С‚СЊСЃСЏ С‚РѕР»СЊРєРѕ РїРѕ РІРµСЂС‚РёРєР°Р»Рё, РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё РёР»Рё РґРёР°РіРѕРЅР°Р»Рё.\n");
 					}
 
 					if (valid_move) {
-						// Обновляем состояние доски: перемещаем ферзя
-						pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
-						pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+						// РћР±РЅРѕРІР»СЏРµРј СЃРѕСЃС‚РѕСЏРЅРёРµ РґРѕСЃРєРё: РїРµСЂРµРјРµС‰Р°РµРј С„РµСЂР·СЏ
+						pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // РџРµСЂРµРјРµС‰Р°РµРј С„РёРіСѓСЂСѓ
+						pole[current_figure_x][current_figure_y] = 0; // РћС‡РёС‰Р°РµРј СЃС‚Р°СЂСѓСЋ РїРѕР·РёС†РёСЋ
 					}
 					else {
-						printf("Несоответствующий ход. Введите новые координаты:\n");
+						printf("РќРµСЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ С…РѕРґ. Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹:\n");
 						scanf_s("%d%d", &target_x, &target_y);
 					}
 				}
@@ -1198,49 +1198,49 @@ int main()
 				break;
 			}
 			case 06: {
-				//чёрный король
+				//С‡С‘СЂРЅС‹Р№ РєРѕСЂРѕР»СЊ
 				bool valid_move = false;
 				while (!valid_move) {
 					if (abs(target_x - current_figure_x) <= 1 and abs(target_y - current_figure_y) <= 1)
-					{ // проверка хода на 1 клетку в любую сторону
+					{ // РїСЂРѕРІРµСЂРєР° С…РѕРґР° РЅР° 1 РєР»РµС‚РєСѓ РІ Р»СЋР±СѓСЋ СЃС‚РѕСЂРѕРЅСѓ
 						if (chornomu_shah[target_x][target_y] == 0)
 						{
 							if (pole[target_x][target_y] == 0 or pole[target_x][target_y] / 10 != ocurrent_figure / 10)
 							{
 								valid_move = true;
-								printf("Король может сходить на (%d, %d)\n", target_x, target_y);
+								printf("РљРѕСЂРѕР»СЊ РјРѕР¶РµС‚ СЃС…РѕРґРёС‚СЊ РЅР° (%d, %d)\n", target_x, target_y);
 							}
 							else
 							{
-								printf("Король не может занять клетку с фигурой своего цвета.\n");
+								printf("РљРѕСЂРѕР»СЊ РЅРµ РјРѕР¶РµС‚ Р·Р°РЅСЏС‚СЊ РєР»РµС‚РєСѓ СЃ С„РёРіСѓСЂРѕР№ СЃРІРѕРµРіРѕ С†РІРµС‚Р°.\n");
 							}
 						}
 						else
 						{
-							printf("Король может двигаться только на одну клетку в любую сторону.\n");
-							printf("Введите корректные координаты для хода короля:\n");
+							printf("РљРѕСЂРѕР»СЊ РјРѕР¶РµС‚ РґРІРёРіР°С‚СЊСЃСЏ С‚РѕР»СЊРєРѕ РЅР° РѕРґРЅСѓ РєР»РµС‚РєСѓ РІ Р»СЋР±СѓСЋ СЃС‚РѕСЂРѕРЅСѓ.\n");
+							printf("Р’РІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РґР»СЏ С…РѕРґР° РєРѕСЂРѕР»СЏ:\n");
 							scanf_s("%d %d", &target_x, &target_y);
 						}
 					}
 					else
 					{
-						printf("Клетка (%d, %d) под ударом.\n", target_x, target_y);
+						printf("РљР»РµС‚РєР° (%d, %d) РїРѕРґ СѓРґР°СЂРѕРј.\n", target_x, target_y);
 						scanf_s("%d%d", &target_x, &target_y);
 					}
 				}
-				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
-				pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // РџРµСЂРµРјРµС‰Р°РµРј С„РёРіСѓСЂСѓ
+				pole[current_figure_x][current_figure_y] = 0; // РћС‡РёС‰Р°РµРј СЃС‚Р°СЂСѓСЋ РїРѕР·РёС†РёСЋ
 				break;
 
 			}
 			case 11: {
 				bool valid_move = false;
 				/*
-				белая пешка
+				Р±РµР»Р°СЏ РїРµС€РєР°
 				*/
 				while (!valid_move)
 				{
-					if (target_x - current_figure_x >= 1) // напавление хода
+					if (target_x - current_figure_x >= 1) // РЅР°РїР°РІР»РµРЅРёРµ С…РѕРґР°
 					{
 						if (target_y == current_figure_y) // 
 						{
@@ -1248,12 +1248,12 @@ int main()
 							{
 								if (pole[current_figure_x + 1][current_figure_y] == 0)
 								{
-									printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x + 1, current_figure_y);
+									printf("РњРѕР·СЏ СЃС…РѕРґРёС‚СЊ РЅР° РєР»РµС‚РѕС‡РєСѓ (%d, %d).\n", current_figure_x + 1, current_figure_y);
 									valid_move = true;
 								}
 								else
 								{
-									printf("Низя ходить в занятую клеточку.\n");
+									printf("РќРёР·СЏ С…РѕРґРёС‚СЊ РІ Р·Р°РЅСЏС‚СѓСЋ РєР»РµС‚РѕС‡РєСѓ.\n");
 									scanf_s("%d %d", &target_x, &target_y);
 								}
 							}
@@ -1261,18 +1261,18 @@ int main()
 							{
 								if (pole[current_figure_x + 2][current_figure_y] == 0)
 								{
-									printf("Мозя сходить на клеточку (%d, %d).\n", current_figure_x + 2, current_figure_y);
+									printf("РњРѕР·СЏ СЃС…РѕРґРёС‚СЊ РЅР° РєР»РµС‚РѕС‡РєСѓ (%d, %d).\n", current_figure_x + 2, current_figure_y);
 									valid_move = true;
 								}
 								else
 								{
-									printf("Низя ходить в занятую клеточку.\n");
+									printf("РќРёР·СЏ С…РѕРґРёС‚СЊ РІ Р·Р°РЅСЏС‚СѓСЋ РєР»РµС‚РѕС‡РєСѓ.\n");
 									scanf_s("%d %d", &target_x, &target_y);
 								}
 							}
 							else
 							{
-								printf("Так пешка не ходит\n");
+								printf("РўР°Рє РїРµС€РєР° РЅРµ С…РѕРґРёС‚\n");
 								scanf_s("%d %d", &target_x, &target_y);
 							}
 						}
@@ -1281,30 +1281,30 @@ int main()
 						{
 							if ((pole[target_x][target_y] < 10 and pole[target_x][target_y] != 0) and (target_x == current_figure_x + 1))
 							{
-								printf("Пешка могёт забрать фигуру на (%d, %d)\n", target_x, target_y);
+								printf("РџРµС€РєР° РјРѕРіС‘С‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", target_x, target_y);
 								valid_move = true;
 							}
 							else
 							{
-								printf("Туды рубыть не положено.\n");
+								printf("РўСѓРґС‹ СЂСѓР±С‹С‚СЊ РЅРµ РїРѕР»РѕР¶РµРЅРѕ.\n");
 								scanf_s("%d %d", &target_x, &target_y);
 							}
 						}
 					}
 					else
 					{
-						printf("Пешка так не ходит.\n");
+						printf("РџРµС€РєР° С‚Р°Рє РЅРµ С…РѕРґРёС‚.\n");
 						scanf_s("%d %d", &target_x, &target_y);
 					}
 				}
 				if (valid_move) {
-					pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
-					pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+					pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // РџРµСЂРµРјРµС‰Р°РµРј С„РёРіСѓСЂСѓ
+					pole[current_figure_x][current_figure_y] = 0; // РћС‡РёС‰Р°РµРј СЃС‚Р°СЂСѓСЋ РїРѕР·РёС†РёСЋ
 					break;
 				}
 			}
 			case 12: {
-				// белый конь
+				// Р±РµР»С‹Р№ РєРѕРЅСЊ
 				int res_1, res_2;
 				while (true) {
 					res_1 = abs(current_figure_x - target_x);
@@ -1312,22 +1312,22 @@ int main()
 					if (((res_1 == 2) and (res_2 == 1)) or ((res_1 == 1) and (res_2 == 2))) {
 						pole[target_x][target_y] = ocurrent_figure;
 						pole[current_figure_x][current_figure_y] = 0;
-						printf("%c ходит на клетку %d %d\n", translate[ocurrent_figure], target_x, target_y);
+						printf("%c С…РѕРґРёС‚ РЅР° РєР»РµС‚РєСѓ %d %d\n", translate[ocurrent_figure], target_x, target_y);
 						break;
 					}
 					else {
-						printf("%c не может сходить на клетку %d %d\n", translate[ocurrent_figure], target_x, target_y);
+						printf("%c РЅРµ РјРѕР¶РµС‚ СЃС…РѕРґРёС‚СЊ РЅР° РєР»РµС‚РєСѓ %d %d\n", translate[ocurrent_figure], target_x, target_y);
 						scanf_s("%d %d", &target_x, &target_y);
 					}
 				}
 				break;
 			}
 			case 13: {
-				// белый слон
+				// Р±РµР»С‹Р№ СЃР»РѕРЅ
 				while(true){
 				if ((abs(target_x - current_figure_x) != abs(target_y - current_figure_y)) or (target_x - current_figure_x == 0))
 				{
-					printf("Введена некорректная координата\nВведите новую координату\n");
+					printf("Р’РІРµРґРµРЅР° РЅРµРєРѕСЂСЂРµРєС‚РЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р°\nР’РІРµРґРёС‚Рµ РЅРѕРІСѓСЋ РєРѕРѕСЂРґРёРЅР°С‚Сѓ\n");
 					scanf_s("%d %d", &target_x, &target_y);
 				}
 				else
@@ -1345,20 +1345,20 @@ int main()
 								{
 									if ((current_figure_x + i * qx == target_x) and (current_figure_y + i * qy == target_y))
 									{
-										printf("Слон может забрать фигуру на (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
+										printf("РЎР»РѕРЅ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
 										break;
 									}
 									else
 									{
-										printf("А клеточка то, таки уже занята.\n");
-										printf("Введена некорректная координата\nВведите новую координату\n");
+										printf("Рђ РєР»РµС‚РѕС‡РєР° С‚Рѕ, С‚Р°РєРё СѓР¶Рµ Р·Р°РЅСЏС‚Р°.\n");
+										printf("Р’РІРµРґРµРЅР° РЅРµРєРѕСЂСЂРµРєС‚РЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р°\nР’РІРµРґРёС‚Рµ РЅРѕРІСѓСЋ РєРѕРѕСЂРґРёРЅР°С‚Сѓ\n");
 										scanf_s("%d %d", &target_x, &target_y);
 									}
 								}
 								else
 								{
-									printf("Наш слон своих не рубит.\n");
-									printf("Рубите своих координата\nВведите новую координату\n");
+									printf("РќР°С€ СЃР»РѕРЅ СЃРІРѕРёС… РЅРµ СЂСѓР±РёС‚.\n");
+									printf("Р СѓР±РёС‚Рµ СЃРІРѕРёС… РєРѕРѕСЂРґРёРЅР°С‚Р°\nР’РІРµРґРёС‚Рµ РЅРѕРІСѓСЋ РєРѕРѕСЂРґРёРЅР°С‚Сѓ\n");
 									scanf_s("%d %d", &target_x, &target_y);
 								}
 							}
@@ -1366,7 +1366,7 @@ int main()
 							{
 								if ((current_figure_x + i * qx == target_x) and (current_figure_y + i * qy == target_y))
 								{
-									printf("Слон может сходить на (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
+									printf("РЎР»РѕРЅ РјРѕР¶РµС‚ СЃС…РѕРґРёС‚СЊ РЅР° (%d, %d)\n", current_figure_x + i * qx, current_figure_y + i * qy);
 									break;
 								}
 							}
@@ -1375,247 +1375,247 @@ int main()
 					break;
 				}
 				}
-				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
-				pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // РџРµСЂРµРјРµС‰Р°РµРј С„РёРіСѓСЂСѓ
+				pole[current_figure_x][current_figure_y] = 0; // РћС‡РёС‰Р°РµРј СЃС‚Р°СЂСѓСЋ РїРѕР·РёС†РёСЋ
 
 				break;
 			}
 			case 14: {
-				// белая ладья
-				int valid_move = 0; // Флаг для проверки корректности введенных координат
+				// Р±РµР»Р°СЏ Р»Р°РґСЊСЏ
+				int valid_move = 0; // Р¤Р»Р°Рі РґР»СЏ РїСЂРѕРІРµСЂРєРё РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РІРІРµРґРµРЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚
 
 				while (!valid_move) {
-					if (target_x == current_figure_x) { // Движение по вертикали
-						// Проверяем все ходы вверх
+					if (target_x == current_figure_x) { // Р”РІРёР¶РµРЅРёРµ РїРѕ РІРµСЂС‚РёРєР°Р»Рё
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІРІРµСЂС…
 						for (int i = current_figure_y + 1; i <= 7; ++i) {
 							if (pole[current_figure_x][i] != 0) {
-								if (pole[current_figure_x][i] / 10 == 1) { // Своя фигура
-									break; // Остановка перед своей фигурой
+								if (pole[current_figure_x][i] / 10 == 1) { // РЎРІРѕСЏ С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ С„РёРіСѓСЂС‹
 									if (i == target_y) {
 										valid_move = 1;
-										printf("Ладья может забрать фигуру на (%d, %d)\n", current_figure_x, i);
+										printf("Р›Р°РґСЊСЏ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", current_figure_x, i);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (i == target_y) { // Если мы дошли до нужной цели
+							if (i == target_y) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
-						// Проверяем все ходы вниз
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІРЅРёР·
 						for (int i = current_figure_y - 1; i >= 0; --i) {
 							if (pole[current_figure_x][i] != 0) {
-								if (pole[current_figure_x][i] / 10 == 1) { // Своя фигура
-									break; // Остановка перед своей фигурой
+								if (pole[current_figure_x][i] / 10 == 1) { // РЎРІРѕСЏ С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ С„РёРіСѓСЂС‹
 									if (i == target_y) {
 										valid_move = 1;
-										printf("Ладья может забрать фигуру на (%d, %d)\n", current_figure_x, i);
+										printf("Р›Р°РґСЊСЏ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", current_figure_x, i);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (i == target_y) { // Если мы дошли до нужной цели
+							if (i == target_y) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
 					}
-					else if (target_y == current_figure_y) { // Движение по горизонтали
-						// Проверяем все ходы вправо
+					else if (target_y == current_figure_y) { // Р”РІРёР¶РµРЅРёРµ РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІРїСЂР°РІРѕ
 						for (int j = current_figure_x + 1; j <= 7; ++j) {
 							if (pole[j][current_figure_y] != 0) {
-								if (pole[j][current_figure_y] / 10 == 1) { // Своя фигура
-									break; // Остановка перед своей фигурой
+								if (pole[j][current_figure_y] / 10 == 1) { // РЎРІРѕСЏ С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ С„РёРіСѓСЂС‹
 									if (j == target_x) {
 										valid_move = 1;
-										printf("Ладья может забрать фигуру на (%d, %d)\n", j, current_figure_y);
+										printf("Р›Р°РґСЊСЏ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", j, current_figure_y);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (j == target_x) { // Если мы дошли до нужной цели
+							if (j == target_x) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
 
-						// Проверяем все ходы влево
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІР»РµРІРѕ
 						for (int j = current_figure_x - 1; j >= 0; --j) {
 							if (pole[j][current_figure_y] != 0) {
-								if (pole[j][current_figure_y] / 10 == 1) { // Своя фигура
-									break; // Остановка перед своей фигурой
+								if (pole[j][current_figure_y] / 10 == 1) { // РЎРІРѕСЏ С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ С„РёРіСѓСЂС‹
 									if (j == target_x) {
 										valid_move = 1;
-										printf("Ладья может забрать фигуру на (%d, %d)\n", j, current_figure_y);
+										printf("Р›Р°РґСЊСЏ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", j, current_figure_y);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (j == target_x) { // Если мы дошли до нужной цели
+							if (j == target_x) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
 					}
 					else {
-						printf("Ладья может двигаться только по вертикали или горизонтали.\n");
+						printf("Р›Р°РґСЊСЏ РјРѕР¶РµС‚ РґРІРёРіР°С‚СЊСЃСЏ С‚РѕР»СЊРєРѕ РїРѕ РІРµСЂС‚РёРєР°Р»Рё РёР»Рё РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё.\n");
 					}
 
 					if (valid_move) {
-						// Обновляем состояние доски: перемещаем ладью
-						pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
-						pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+						// РћР±РЅРѕРІР»СЏРµРј СЃРѕСЃС‚РѕСЏРЅРёРµ РґРѕСЃРєРё: РїРµСЂРµРјРµС‰Р°РµРј Р»Р°РґСЊСЋ
+						pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // РџРµСЂРµРјРµС‰Р°РµРј С„РёРіСѓСЂСѓ
+						pole[current_figure_x][current_figure_y] = 0; // РћС‡РёС‰Р°РµРј СЃС‚Р°СЂСѓСЋ РїРѕР·РёС†РёСЋ
 					}
 					else {
-						printf("Несоответствующий ход. Введите новые координаты:\n");
+						printf("РќРµСЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ С…РѕРґ. Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹:\n");
 						scanf_s("%d%d", &target_x, &target_y);
 					}
 				}
 				break;
 			}
 			case 15: {
-				//белый ферзь
-				int valid_move = 0; // Флаг для проверки корректности введенных координат
+				//Р±РµР»С‹Р№ С„РµСЂР·СЊ
+				int valid_move = 0; // Р¤Р»Р°Рі РґР»СЏ РїСЂРѕРІРµСЂРєРё РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РІРІРµРґРµРЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚
 
 				while (!valid_move) {
-					// Проверка на вертикальное или горизонтальное движение (как у ладьи)
-					if (target_x == current_figure_x) { // Движение по вертикали
-						// Проверяем все ходы вверх
+					// РџСЂРѕРІРµСЂРєР° РЅР° РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ РёР»Рё РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕРµ РґРІРёР¶РµРЅРёРµ (РєР°Рє Сѓ Р»Р°РґСЊРё)
+					if (target_x == current_figure_x) { // Р”РІРёР¶РµРЅРёРµ РїРѕ РІРµСЂС‚РёРєР°Р»Рё
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІРІРµСЂС…
 						for (int i = current_figure_y + 1; i <= 7; ++i) {
 							if (pole[current_figure_x][i] != 0) {
-								if (pole[current_figure_x][i] / 10 == 1) { // Своя (белая) фигура
-									break; // Остановка перед своей фигурой
+								if (pole[current_figure_x][i] / 10 == 1) { // РЎРІРѕСЏ (Р±РµР»Р°СЏ) С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской (чёрной) фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ (С‡С‘СЂРЅРѕР№) С„РёРіСѓСЂС‹
 									if (i == target_y) {
 										valid_move = 1;
-										printf("Белый ферзь может забрать фигуру на (%d, %d)\n", current_figure_x, i);
+										printf("Р‘РµР»С‹Р№ С„РµСЂР·СЊ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", current_figure_x, i);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (i == target_y) { // Если мы дошли до нужной цели
+							if (i == target_y) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
-						// Проверяем все ходы вниз
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІРЅРёР·
 						for (int i = current_figure_y - 1; i >= 0; --i) {
 							if (pole[current_figure_x][i] != 0) {
-								if (pole[current_figure_x][i] / 10 == 1) { // Своя (белая) фигура
-									break; // Остановка перед своей фигурой
+								if (pole[current_figure_x][i] / 10 == 1) { // РЎРІРѕСЏ (Р±РµР»Р°СЏ) С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской (чёрной) фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ (С‡С‘СЂРЅРѕР№) С„РёРіСѓСЂС‹
 									if (i == target_y) {
 										valid_move = 1;
-										printf("Белый ферзь может забрать фигуру на (%d, %d)\n", current_figure_x, i);
+										printf("Р‘РµР»С‹Р№ С„РµСЂР·СЊ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", current_figure_x, i);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (i == target_y) { // Если мы дошли до нужной цели
+							if (i == target_y) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
 					}
-					else if (target_y == current_figure_y) { // Движение по горизонтали
-						// Проверяем все ходы вправо
+					else if (target_y == current_figure_y) { // Р”РІРёР¶РµРЅРёРµ РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІРїСЂР°РІРѕ
 						for (int j = current_figure_x + 1; j <= 7; ++j) {
 							if (pole[j][current_figure_y] != 0) {
-								if (pole[j][current_figure_y] / 10 == 1) { // Своя (белая) фигура
-									break; // Остановка перед своей фигурой
+								if (pole[j][current_figure_y] / 10 == 1) { // РЎРІРѕСЏ (Р±РµР»Р°СЏ) С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской (чёрной) фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ (С‡С‘СЂРЅРѕР№) С„РёРіСѓСЂС‹
 									if (j == target_x) {
 										valid_move = 1;
-										printf("Белый ферзь может забрать фигуру на (%d, %d)\n", j, current_figure_y);
+										printf("Р‘РµР»С‹Р№ С„РµСЂР·СЊ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", j, current_figure_y);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (j == target_x) { // Если мы дошли до нужной цели
+							if (j == target_x) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
 
-						// Проверяем все ходы влево
+						// РџСЂРѕРІРµСЂСЏРµРј РІСЃРµ С…РѕРґС‹ РІР»РµРІРѕ
 						for (int j = current_figure_x - 1; j >= 0; --j) {
 							if (pole[j][current_figure_y] != 0) {
-								if (pole[j][current_figure_y] / 10 == 1) { // Своя (белая) фигура
-									break; // Остановка перед своей фигурой
+								if (pole[j][current_figure_y] / 10 == 1) { // РЎРІРѕСЏ (Р±РµР»Р°СЏ) С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской (чёрной) фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ (С‡С‘СЂРЅРѕР№) С„РёРіСѓСЂС‹
 									if (j == target_x) {
 										valid_move = 1;
-										printf("Белый ферзь может забрать фигуру на (%d, %d)\n", j, current_figure_y);
+										printf("Р‘РµР»С‹Р№ С„РµСЂР·СЊ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", j, current_figure_y);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (j == target_x) { // Если мы дошли до нужной цели
+							if (j == target_x) { // Р•СЃР»Рё РјС‹ РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
 					}
-					// Проверка на движение по диагонали (как у слона)
-					else if (abs(target_x - current_figure_x) == abs(target_y - current_figure_y)) { // Движение по диагонали
+					// РџСЂРѕРІРµСЂРєР° РЅР° РґРІРёР¶РµРЅРёРµ РїРѕ РґРёР°РіРѕРЅР°Р»Рё (РєР°Рє Сѓ СЃР»РѕРЅР°)
+					else if (abs(target_x - current_figure_x) == abs(target_y - current_figure_y)) { // Р”РІРёР¶РµРЅРёРµ РїРѕ РґРёР°РіРѕРЅР°Р»Рё
 						int qx = (target_x - current_figure_x) / abs(target_x - current_figure_x);
 						int qy = (target_y - current_figure_y) / abs(target_y - current_figure_y);
 						for (int i = 1; i < 8; ++i) {
 							int new_x = current_figure_x + i * qx;
 							int new_y = current_figure_y + i * qy;
 							if (new_x < 0 || new_x > 7 || new_y < 0 || new_y > 7)
-								break; // Останавливаемся, если за пределами доски
+								break; // РћСЃС‚Р°РЅР°РІР»РёРІР°РµРјСЃСЏ, РµСЃР»Рё Р·Р° РїСЂРµРґРµР»Р°РјРё РґРѕСЃРєРё
 							if (pole[new_x][new_y] != 0) {
-								if (pole[new_x][new_y] / 10 == 1) { // Своя (белая) фигура
-									break; // Остановка перед своей фигурой
+								if (pole[new_x][new_y] / 10 == 1) { // РЎРІРѕСЏ (Р±РµР»Р°СЏ) С„РёРіСѓСЂР°
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ СЃРІРѕРµР№ С„РёРіСѓСЂРѕР№
 								}
 								else {
-									// Съедание вражеской (чёрной) фигуры
+									// РЎСЉРµРґР°РЅРёРµ РІСЂР°Р¶РµСЃРєРѕР№ (С‡С‘СЂРЅРѕР№) С„РёРіСѓСЂС‹
 									if (new_x == target_x && new_y == target_y) {
 										valid_move = 1;
-										printf("Белый ферзь может забрать фигуру на (%d, %d)\n", new_x, new_y);
+										printf("Р‘РµР»С‹Р№ С„РµСЂР·СЊ РјРѕР¶РµС‚ Р·Р°Р±СЂР°С‚СЊ С„РёРіСѓСЂСѓ РЅР° (%d, %d)\n", new_x, new_y);
 									}
-									break; // Остановка перед фигурой противника
+									break; // РћСЃС‚Р°РЅРѕРІРєР° РїРµСЂРµРґ С„РёРіСѓСЂРѕР№ РїСЂРѕС‚РёРІРЅРёРєР°
 								}
 							}
-							if (new_x == target_x && new_y == target_y) { // Если дошли до нужной цели
+							if (new_x == target_x && new_y == target_y) { // Р•СЃР»Рё РґРѕС€Р»Рё РґРѕ РЅСѓР¶РЅРѕР№ С†РµР»Рё
 								valid_move = 1;
 								break;
 							}
 						}
 					}
 					else {
-						printf("Белый ферзь может двигаться только по вертикали, горизонтали или диагонали.\n");
+						printf("Р‘РµР»С‹Р№ С„РµСЂР·СЊ РјРѕР¶РµС‚ РґРІРёРіР°С‚СЊСЃСЏ С‚РѕР»СЊРєРѕ РїРѕ РІРµСЂС‚РёРєР°Р»Рё, РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё РёР»Рё РґРёР°РіРѕРЅР°Р»Рё.\n");
 					}
 
 					if (valid_move) {
-						// Обновляем состояние доски: перемещаем белого ферзя
-						pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
-						pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+						// РћР±РЅРѕРІР»СЏРµРј СЃРѕСЃС‚РѕСЏРЅРёРµ РґРѕСЃРєРё: РїРµСЂРµРјРµС‰Р°РµРј Р±РµР»РѕРіРѕ С„РµСЂР·СЏ
+						pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // РџРµСЂРµРјРµС‰Р°РµРј С„РёРіСѓСЂСѓ
+						pole[current_figure_x][current_figure_y] = 0; // РћС‡РёС‰Р°РµРј СЃС‚Р°СЂСѓСЋ РїРѕР·РёС†РёСЋ
 					}
 					else {
-						printf("Несоответствующий ход. Введите новые координаты:\n");
+						printf("РќРµСЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ С…РѕРґ. Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹:\n");
 						scanf_s("%d%d", &target_x, &target_y);
 					}
 				}
@@ -1623,43 +1623,43 @@ int main()
 				break;
 			}
 			case 16: {
-				//белый король
+				//Р±РµР»С‹Р№ РєРѕСЂРѕР»СЊ
 				bool valid_move = false;
 				while (!valid_move) {
 					if (abs(target_x - current_figure_x) <= 1 && abs(target_y - current_figure_y) <= 1)
-					{ // проверка хода на 1 клетку в любую сторону
+					{ // РїСЂРѕРІРµСЂРєР° С…РѕРґР° РЅР° 1 РєР»РµС‚РєСѓ РІ Р»СЋР±СѓСЋ СЃС‚РѕСЂРѕРЅСѓ
 						if (belomu_shah[target_x][target_y] == 0)
 						{
 							if (pole[target_x][target_y] == 0 || pole[target_x][target_y] / 10 != ocurrent_figure / 10)
 							{
 								valid_move = true;
-								printf("Король может сходить на (%d, %d)\n", target_x, target_y);
+								printf("РљРѕСЂРѕР»СЊ РјРѕР¶РµС‚ СЃС…РѕРґРёС‚СЊ РЅР° (%d, %d)\n", target_x, target_y);
 							}
 							else
 							{
-								printf("Король не может занять клетку с фигурой своего цвета.\n");
+								printf("РљРѕСЂРѕР»СЊ РЅРµ РјРѕР¶РµС‚ Р·Р°РЅСЏС‚СЊ РєР»РµС‚РєСѓ СЃ С„РёРіСѓСЂРѕР№ СЃРІРѕРµРіРѕ С†РІРµС‚Р°.\n");
 
 							}
 						}
 						else
 						{
-							printf("Клетка (%d, %d) под ударом.\n", target_x, target_y);
+							printf("РљР»РµС‚РєР° (%d, %d) РїРѕРґ СѓРґР°СЂРѕРј.\n", target_x, target_y);
 							scanf_s("%d%d", &target_x, &target_y);
 						}
 					}
 					else {
-						printf("Король может двигаться только на одну клетку в любую сторону.\n");
-						printf("Введите корректные координаты для хода короля:\n");
+						printf("РљРѕСЂРѕР»СЊ РјРѕР¶РµС‚ РґРІРёРіР°С‚СЊСЃСЏ С‚РѕР»СЊРєРѕ РЅР° РѕРґРЅСѓ РєР»РµС‚РєСѓ РІ Р»СЋР±СѓСЋ СЃС‚РѕСЂРѕРЅСѓ.\n");
+						printf("Р’РІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РґР»СЏ С…РѕРґР° РєРѕСЂРѕР»СЏ:\n");
 						scanf_s("%d %d", &target_x, &target_y);
 					}
 				}
-				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // Перемещаем фигуру
-				pole[current_figure_x][current_figure_y] = 0; // Очищаем старую позицию
+				pole[target_x][target_y] = pole[current_figure_x][current_figure_y]; // РџРµСЂРµРјРµС‰Р°РµРј С„РёРіСѓСЂСѓ
+				pole[current_figure_x][current_figure_y] = 0; // РћС‡РёС‰Р°РµРј СЃС‚Р°СЂСѓСЋ РїРѕР·РёС†РёСЋ
 				break;
 
 			}
 			}
-			//изменение матриц белый шах чёрный шах
+			//РёР·РјРµРЅРµРЅРёРµ РјР°С‚СЂРёС† Р±РµР»С‹Р№ С€Р°С… С‡С‘СЂРЅС‹Р№ С€Р°С…
 			for (int i = 0; i < 8; i++) {
 				for (int j = 0; j < 8; j++) {
 					chornomu_shah[i][j] = 0;
@@ -1672,7 +1672,7 @@ int main()
 				{
 					switch (pole[x][y])
 					{
-					case 1: // какую угрозу королю представляет peshka
+					case 1: // РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ peshka
 					{
 						if (x - 1 >= 0)
 						{
@@ -1688,7 +1688,7 @@ int main()
 						break;
 					}
 
-					case 2: //какую угрозу королю представляет конь
+					case 2: //РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ РєРѕРЅСЊ
 					{
 						if (x + 1 < 8)
 						{
@@ -1738,7 +1738,7 @@ int main()
 						}
 						break;
 					}
-					case 3: //какую угрозу королю представляет  слон
+					case 3: //РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚  СЃР»РѕРЅ
 					{
 						bool f[4] = { 1, 1, 1, 1 };
 						int sum = 4;
@@ -1814,7 +1814,7 @@ int main()
 						}
 						break;
 					}
-					case 4: //какую угрозу королю представляет ладья
+					case 4: //РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ Р»Р°РґСЊСЏ
 					{
 						for (int i = 1; i < 8; i++) {
 							if (x - i < 0) {
@@ -1987,7 +1987,7 @@ int main()
 						niger[1] = y;
 						break;
 					}
-					case 11: // какую угрозу белому королю представляет черная peshka
+					case 11: // РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ Р±РµР»РѕРјСѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ С‡РµСЂРЅР°СЏ peshka
 					{
 						if (x + 1 < 8)
 						{
@@ -2003,7 +2003,7 @@ int main()
 						break;
 					}
 
-					case 12: //какую угрозу королю представляет конь
+					case 12: //РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ РєРѕРЅСЊ
 					{
 						if (x + 1 < 8)
 						{
@@ -2053,7 +2053,7 @@ int main()
 						}
 						break;
 					}
-					case 13: //какую угрозу королю представляет  слон
+					case 13: //РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚  СЃР»РѕРЅ
 					{
 						bool f[4] = { 1, 1, 1, 1 };
 						int sum = 4;
@@ -2129,7 +2129,7 @@ int main()
 						}
 						break;
 					}
-					case 14: //какую угрозу королю представляет ладья
+					case 14: //РєР°РєСѓСЋ СѓРіСЂРѕР·Сѓ РєРѕСЂРѕР»СЋ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ Р»Р°РґСЊСЏ
 					{
 						for (int i = 1; i < 8; i++) {
 							if (x - i < 0) {
@@ -2310,7 +2310,7 @@ int main()
 				if (chornomu_shah[niger[0]][niger[1]] == 1)
 				{
 					if (r % 2 == 1) {
-						printf("Чёрный Король под шахом!\n");
+						printf("Р§С‘СЂРЅС‹Р№ РљРѕСЂРѕР»СЊ РїРѕРґ С€Р°С…РѕРј!\n");
 						for (int i = 0; i < 8; i++)
 						{
 							for (int j = 0; j < 8; j++)
@@ -2332,7 +2332,7 @@ int main()
 				if (belomu_shah[rasist[0]][rasist[1]] == 1)
 				{
 					if (r % 2 == 0) {
-						printf("Белый Король под шахом!\n");
+						printf("Р‘РµР»С‹Р№ РљРѕСЂРѕР»СЊ РїРѕРґ С€Р°С…РѕРј!\n");
 						for (int i = 0; i < 8; i++)
 						{
 							for (int j = 0; j < 8; j++)
@@ -2350,10 +2350,10 @@ int main()
 				}
 			}
 		}
-		// вывод шахматной доски и фигур на ней
+		// РІС‹РІРѕРґ С€Р°С…РјР°С‚РЅРѕР№ РґРѕСЃРєРё Рё С„РёРіСѓСЂ РЅР° РЅРµР№
 		for (int x = 0; x <= 7; x++) {
 			for (int y = 0; y <= 7; y++) {
-				if (pole[x][y] == 0) { // Пусто
+				if (pole[x][y] == 0) { // РџСѓСЃС‚Рѕ
 					if ((x + y) % 2 == 0) {
 						printf("#");
 					}
@@ -2361,14 +2361,14 @@ int main()
 						printf(" ");
 					}
 				}
-				else { // Есть фигура
+				else { // Р•СЃС‚СЊ С„РёРіСѓСЂР°
 					printf("%c", translate[pole[x][y]]);
 				}
 			}
 			printf("\n");
 		}
 	}
-	//начинается подсчёт очков
+	//РЅР°С‡РёРЅР°РµС‚СЃСЏ РїРѕРґСЃС‡С‘С‚ РѕС‡РєРѕРІ
 	int chornie_score = 0, belie_score = 0;
 	for (int i = 0; i < 8; i++)
 	{
@@ -2376,20 +2376,20 @@ int main()
 			if (pole[i][j] != 0) {
 				if (pole[i][j] < 10) {
 					chornie_score++;
-					printf("У чёрных есть фигура %c, + очко слизерину: %d\n", translate[pole[i][j]], chornie_score);
+					printf("РЈ С‡С‘СЂРЅС‹С… РµСЃС‚СЊ С„РёРіСѓСЂР° %c, + РѕС‡РєРѕ СЃР»РёР·РµСЂРёРЅСѓ: %d\n", translate[pole[i][j]], chornie_score);
 				}
 				else {
 					belie_score++;
-					printf("У белых есть фигура %c, + очко гриффиндору: %d\n", translate[pole[i][j]], belie_score);
+					printf("РЈ Р±РµР»С‹С… РµСЃС‚СЊ С„РёРіСѓСЂР° %c, + РѕС‡РєРѕ РіСЂРёС„С„РёРЅРґРѕСЂСѓ: %d\n", translate[pole[i][j]], belie_score);
 				}
 			}
 		}
 	}
-	printf("Итого у чёрных: %d\nИтого у белых: %d\n", chornie_score, belie_score);
-	if (chornie_score > belie_score) printf("Победа чёрных!");
+	printf("РС‚РѕРіРѕ Сѓ С‡С‘СЂРЅС‹С…: %d\nРС‚РѕРіРѕ Сѓ Р±РµР»С‹С…: %d\n", chornie_score, belie_score);
+	if (chornie_score > belie_score) printf("РџРѕР±РµРґР° С‡С‘СЂРЅС‹С…!");
 	else {
-		if (chornie_score < belie_score) printf("Победа белых!");
-		else printf("Ничья!");
+		if (chornie_score < belie_score) printf("РџРѕР±РµРґР° Р±РµР»С‹С…!");
+		else printf("РќРёС‡СЊСЏ!");
 	}
 }
 
