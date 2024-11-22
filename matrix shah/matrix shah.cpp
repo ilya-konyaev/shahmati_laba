@@ -682,6 +682,27 @@ int main()
 			}
 		}
 	}
+
+
+	// вывод шахматной доски и фигур на ней
+	for (int x = 0; x <= 7; x++) {
+		for (int y = 0; y <= 7; y++) {
+			if (pole[x][y] == 0) { // Пусто
+				if ((x + y) % 2 == 0) {
+					printf("#");
+				}
+				else {
+					printf(" ");
+				}
+			}
+			else { // Есть фигура
+				printf("%c", translate[pole[x][y]]);
+			}
+		}
+		printf("\n");
+	}
+
+
 	for (int r = 1; r < 21; r++) {
 		printf("Ход %d\n", r);
 		bool flag = true;
@@ -689,23 +710,7 @@ int main()
 
 
 
-		// вывод шахматной доски и фигур на ней
-		for (int x = 0; x <= 7; x++) {
-			for (int y = 0; y <= 7; y++) {
-				if (pole[x][y] == 0) { // Пусто
-					if ((x + y) % 2 == 0) {
-						printf("#");
-					}
-					else {
-						printf(" ");
-					}
-				}
-				else { // Есть фигура
-					printf("%c", translate[pole[x][y]]);
-				}
-			}
-			printf("\n");
-		}
+		
 
 		while (flag) {
 			if (r % 2 == 1) {
